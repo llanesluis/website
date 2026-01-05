@@ -11,7 +11,7 @@ export function Footer() {
           <p className="text-sm">2026 by Luis Llanes</p>
           <p className="text-muted-foreground text-xs">
             Source code available on{" "}
-            <Link href="https://github.com/llanesluis" target="_blank">
+            <Link href="https://github.com/llanesluis/website" target="_blank">
               GitHub
             </Link>
           </p>
