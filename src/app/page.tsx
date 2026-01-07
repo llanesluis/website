@@ -12,7 +12,7 @@ export default function Home() {
         <div className="container-padding-x container text-center">website under construction</div>
       </div>
 
-      <main className="container-padding-x container lowercase">
+      <main className="container-padding-x container font-mono lowercase">
         <HeroSection />
       </main>
     </>

@@ -1,3 +1,4 @@
+// TODO: Move this to a place where the rest of the user info is (will be*) stored
 export const SOCIALS = [
   {
     name: "GitHub",
