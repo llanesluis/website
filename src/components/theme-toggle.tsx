@@ -11,43 +11,53 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
-import { META_THEME_COLORS, useMetaColor } from "@/hooks/use-meta-colors";
-import { cn } from "@/lib/utils";
+import { META_THEME_COLORS } from "@/config/site";
+import { useMetaColor } from "@/hooks/use-meta-colors";
 
-export function ThemeToggle({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
+export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof Button>) {
   const { setTheme, resolvedTheme, theme } = useTheme();
   const { setMetaColor } = useMetaColor();
 
-  const toggleTheme = React.useCallback(() => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
-    setMetaColor(resolvedTheme === "dark" ? META_THEME_COLORS.light : META_THEME_COLORS.dark);
-  }, [resolvedTheme, setTheme, setMetaColor]);
+  const handleThemeChange = React.useCallback(
+    (newTheme: "light" | "dark" | "system") => {
+      setTheme(newTheme);
+      if (newTheme === "light") {
+        setMetaColor(META_THEME_COLORS.light);
+      } else if (newTheme === "dark") {
+        setMetaColor(META_THEME_COLORS.dark);
+      } else {
+        // For system, use resolvedTheme to determine the color
+        setMetaColor(resolvedTheme === "dark" ? META_THEME_COLORS.dark : META_THEME_COLORS.light);
+      }
+    },
+    [resolvedTheme, setTheme, setMetaColor]
+  );
+
+  const switchTheme = React.useCallback(() => {
+    handleThemeChange(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, handleThemeChange]);
 
   return (
     <ContextMenu modal={false}>
       <ContextMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className={cn("", className)}
-          title="Toggle theme"
-          {...props}
-        >
+        <Button variant="ghost" size="icon" onClick={switchTheme} title="Toggle theme" {...props}>
           {theme === "dark" ? <Sun /> : <Moon />}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </ContextMenuTrigger>
 
       <ContextMenuContent className="*:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground space-y-1">
-        <ContextMenuItem data-active={theme === "light"} onClick={() => setTheme("light")}>
+        <ContextMenuItem data-active={theme === "light"} onClick={() => handleThemeChange("light")}>
           <Sun /> Light
         </ContextMenuItem>
-        <ContextMenuItem data-active={theme === "dark"} onClick={() => setTheme("dark")}>
+        <ContextMenuItem data-active={theme === "dark"} onClick={() => handleThemeChange("dark")}>
           <Moon />
           Dark
         </ContextMenuItem>
-        <ContextMenuItem data-active={theme === "system"} onClick={() => setTheme("system")}>
+        <ContextMenuItem
+          data-active={theme === "system"}
+          onClick={() => handleThemeChange("system")}
+        >
           <Monitor /> System
         </ContextMenuItem>
       </ContextMenuContent>
