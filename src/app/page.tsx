@@ -1,9 +1,9 @@
 import { Briefcase01Icon, Location04Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SOCIALS } from "@/config/socials";
-import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function Home() {
   return (

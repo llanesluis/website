@@ -1,3 +1,5 @@
+import "@/styles/globals.css";
+
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
@@ -5,7 +7,6 @@ import { Footer } from "@/components/footer";
 import { Providers } from "@/components/providers";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
 import { fontVariables } from "@/lib/fonts";
-import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: {
