@@ -1,13 +1,23 @@
 {
   "name": "website",
   "version": "0.1.0",
+  "description": "A minimal dev portfolio.",
+  "homepage": "https://luisllanes.com",
+  "author": {
+    "name": "Luis Llanes",
+    "email": "luisllaboj@gmail.com",
+    "url": "https://luisllanes.com"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache"
+    "lint:fix": "eslint --fix .",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^3.1.1",
@@ -34,6 +44,8 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
