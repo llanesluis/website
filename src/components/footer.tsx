@@ -18,9 +18,9 @@ export function Footer() {
         <div className="flex flex-col gap-2">
           <p className="trail-highlight text-sm">2026 by Luis Llanes</p>
           <p className="text-muted-foreground text-xs">
-            Source code available on{" "}
+            Source code available{" "}
             <Link href="https://github.com/llanesluis/website" target="_blank" className="link">
-              GitHub
+              here
             </Link>
           </p>
         </div>

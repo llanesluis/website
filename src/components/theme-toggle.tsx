@@ -1,7 +1,6 @@
 "use client";
 
-import { Moon02Icon, Sun02Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
@@ -38,14 +37,11 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
     handleThemeChange(resolvedTheme === "dark" ? "light" : "dark");
   }, [resolvedTheme, handleThemeChange]);
 
-  const lightIcon = <HugeiconsIcon icon={Sun02Icon} />;
-  const darkIcon = <HugeiconsIcon icon={Moon02Icon} />;
-
   return (
     <ContextMenu modal={false}>
       <ContextMenuTrigger asChild>
         <Button variant="ghost" size="icon" onClick={switchTheme} title="Toggle theme" {...props}>
-          {resolvedTheme === "dark" ? lightIcon : darkIcon}
+          {resolvedTheme === "dark" ? <SunIcon /> : <MoonIcon />}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </ContextMenuTrigger>

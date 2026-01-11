@@ -78,7 +78,7 @@
   --primary-foreground: oklch(0.985 0 0);
   --highlight: var(--color-rose-600);
   --highlight-foreground: var(--color-rose-50);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(0.92 0 0); /* --color-neutral-200 */
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -221,13 +221,25 @@
 }
 
 @utility link {
-  @apply text-primary hover:text-primary/80 font-medium underline underline-offset-4 transition-all hover:no-underline;
+  @apply text-primary hover:text-primary/80 font-medium underline underline-offset-2 transition-all hover:no-underline;
 }
 
 @utility trail-highlight {
   @apply after:text-highlight after:inline after:content-["\_"];
 }
 
-@utility list-highlight {
-  @apply marker:text-highlight list-inside marker:content-['\__'];
+@utility list-custom {
+  @apply list-none;
+
+  & > li {
+    @apply list-highlight-item;
+  }
+}
+
+@utility list-highlight-item {
+  @apply relative pl-[1ch];
+
+  &::before {
+    @apply text-highlight absolute left-0 content-['\_'];
+  }
 }

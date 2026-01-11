@@ -1,7 +1,7 @@
-import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight, Info } from "lucide-react";
 import Link from "next/link";
 
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function WorkSection() {
   return (
@@ -17,14 +18,23 @@ export function WorkSection() {
       <h2 className="trail-highlight font-medium">My Work</h2>
       <div className="grid grid-cols-1 gap-4">
         {WORK.map((project) => (
-          <Card key={project.name}>
-            {project.type === "oss-contribution" && (
-              <span className="bg-highlight/10 text-highlight w-fit rounded-tr-sm border-l-2 py-1 pr-2 pl-6 text-xs font-medium">
-                Open Source Contribution
-              </span>
-            )}
+          <Card key={project.name} className="group">
             <CardHeader>
-              <CardTitle>
+              {project.type === "oss-contribution" && (
+                <Badge variant="secondary" className="justify-self-end">
+                  OSS Contribution
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="size-3.5" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      Not my own project, I&apos;m just a contributor!
+                    </TooltipContent>
+                  </Tooltip>
+                </Badge>
+              )}
+
+              <CardTitle className="group-hover:text-highlight transition-colors">
                 <h3>{project.name}</h3>
               </CardTitle>
               <CardDescription>
@@ -32,27 +42,25 @@ export function WorkSection() {
               </CardDescription>
             </CardHeader>
 
-            {project.features && (
-              <CardContent>
-                <ul className="list-highlight list-inside">
-                  {project.features.map((feature) => (
+            {project.content && (
+              <CardContent className="flex flex-col gap-4">
+                <p>{project.content.text}</p>
+                <ul className="list-custom">
+                  {project.content.features?.map((feature) => (
                     <li key={feature}>{feature}</li>
                   ))}
                 </ul>
               </CardContent>
             )}
 
-            <CardFooter className="flex gap-2">
-              {project.links.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.url}
-                  target="_blank"
-                  className="link flex items-center gap-1 text-sm"
-                >
-                  {link.label} <HugeiconsIcon icon={ArrowUpRight01Icon} className="size-3.5" />
-                </Link>
-              ))}
+            <CardFooter>
+              <Link
+                href={project.url}
+                target="_blank"
+                className="link flex items-center gap-1 text-sm"
+              >
+                Preview <ArrowUpRight className="size-3.5" />
+              </Link>
             </CardFooter>
           </Card>
         ))}
@@ -66,11 +74,11 @@ type Work = {
   name: string;
   description: string;
   details?: string;
-  features?: string[];
-  links: {
-    label: string;
-    url: string;
-  }[];
+  content?: {
+    text?: string;
+    features?: string[];
+  };
+  url: string;
 };
 
 const WORK: Work[] = [
@@ -78,50 +86,30 @@ const WORK: Work[] = [
     type: "work",
     name: "Shadcraft Registry",
     description:
-      "A shadcn/ui compatible registry of premium quality marketing and application components and blocks, ready to use in your projects.",
-    links: [
-      {
-        label: "Preview",
-        url: "https://registry-shadcraft.vercel.app/",
-      },
-    ],
+      "A shadcn/ui compatible registry of premium quality, production-ready marketing and application components and blocks.",
+    url: "https://registry-shadcraft.vercel.app/",
   },
   {
     type: "work",
     name: "Shadcraft Free Registry",
     description:
-      "A shadcn/ui compatible registry of free marketing and application components and blocks, ready to use in your projects.",
-    links: [
-      {
-        label: "Preview",
-        url: "https://shadcraft-free.vercel.app/",
-      },
-      {
-        label: "Github Repo",
-        url: "https://github.com/shadcraft/shadcraft-free",
-      },
-    ],
+      "A free, opensource shadcn/ui compatible registry of marketing components and blocks.",
+    url: "https://shadcraft-free.vercel.app/",
   },
   {
     type: "oss-contribution",
     name: "tweakcn",
     description: "A visual no-code theme editor for shadcn/ui components.",
-    features: [
-      "AI Theme Generator",
-      "Custom website preview",
-      "Tailwind V4 color picker",
-      "Google Fonts picker",
-      "Shadcn-like cards preview",
-    ],
-    links: [
-      {
-        label: "Preview",
-        url: "https://tweakcn.com/",
-      },
-      {
-        label: "Github Repo",
-        url: "https://github.com/jnsahaj/tweakcn",
-      },
-    ],
+    content: {
+      text: "I was building my own theme editor, then I dropped it to contribute to tweakcn instead, here are some of the features I built:",
+      features: [
+        "AI Theme Generator",
+        "Custom website preview",
+        "Tailwind V4 color picker",
+        "Google Fonts picker",
+        "Shadcn-like cards preview",
+      ],
+    },
+    url: "https://tweakcn.com/editor/theme?tab=ai&p=custom",
   },
 ];

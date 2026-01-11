@@ -23,7 +23,7 @@ export function OverviewSection() {
             </p>
           </div>
 
-          <ul className="list-highlight flex flex-col gap-2">
+          <ul className="list-custom flex flex-col gap-2">
             <li className="text-sm">Based in México</li>
             <li className="text-sm">
               Working at{" "}
