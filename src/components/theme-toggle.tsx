@@ -1,6 +1,7 @@
 "use client";
 
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon02Icon, Sun02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
@@ -37,28 +38,30 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
     handleThemeChange(resolvedTheme === "dark" ? "light" : "dark");
   }, [resolvedTheme, handleThemeChange]);
 
+  const lightIcon = <HugeiconsIcon icon={Sun02Icon} />;
+  const darkIcon = <HugeiconsIcon icon={Moon02Icon} />;
+
   return (
     <ContextMenu modal={false}>
       <ContextMenuTrigger asChild>
         <Button variant="ghost" size="icon" onClick={switchTheme} title="Toggle theme" {...props}>
-          {theme === "dark" ? <Sun /> : <Moon />}
+          {resolvedTheme === "dark" ? lightIcon : darkIcon}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </ContextMenuTrigger>
 
-      <ContextMenuContent className="*:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground space-y-1">
+      <ContextMenuContent className="*:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground w-auto min-w-0 space-y-1">
         <ContextMenuItem data-active={theme === "light"} onClick={() => handleThemeChange("light")}>
-          <Sun /> Light
+          Light Mode
         </ContextMenuItem>
         <ContextMenuItem data-active={theme === "dark"} onClick={() => handleThemeChange("dark")}>
-          <Moon />
-          Dark
+          Dark Mode
         </ContextMenuItem>
         <ContextMenuItem
           data-active={theme === "system"}
           onClick={() => handleThemeChange("system")}
         >
-          <Monitor /> System
+          System
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
