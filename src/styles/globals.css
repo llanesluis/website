@@ -28,6 +28,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
   --color-selection: var(--selection);
   --color-selection-foreground: var(--selection-foreground);
   --color-info: var(--info);
@@ -63,17 +65,19 @@
 }
 
 :root {
-  --radius: 1.25rem;
+  --radius: 1rem;
 
-  --background: oklch(1 0 0);
+  --background: oklch(0.985 0 0); /* --color-neutral-50 */
   --foreground: oklch(0.145 0 0);
 
-  --card: oklch(0.985 0 0);
+  --card: oklch(0.97 0 0); /* --color-neutral-100 */
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
+  --highlight: var(--color-rose-600);
+  --highlight-foreground: var(--color-rose-50);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -116,6 +120,8 @@
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
+  --highlight: var(--color-rose-400);
+  --highlight-foreground: var(--color-rose-950);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -163,8 +169,8 @@
     text-rendering: optimizeLegibility;
   }
 
-  a {
-    @apply link text-primary hover:text-primary/80 transition-all;
+  button {
+    @apply cursor-pointer;
   }
 
   ::selection {
@@ -215,5 +221,13 @@
 }
 
 @utility link {
-  @apply font-medium underline underline-offset-4;
+  @apply text-primary hover:text-primary/80 font-medium underline underline-offset-4 transition-all hover:no-underline;
+}
+
+@utility trail-highlight {
+  @apply after:text-highlight after:inline after:content-["\_"];
+}
+
+@utility list-highlight {
+  @apply marker:text-highlight list-inside marker:content-['\__'];
 }

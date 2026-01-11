@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
 import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { Providers } from "@/components/providers";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
 import { fontVariables } from "@/lib/fonts";
@@ -78,9 +79,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
       </head>
 
-      <body className={`${fontVariables} flex min-h-svh flex-col overscroll-none scroll-smooth`}>
+      <body
+        className={`${fontVariables} flex min-h-svh flex-col overscroll-none scroll-smooth lowercase`}
+      >
         <Providers>
-          <div className="flex flex-1 flex-col">{children}</div>
+          <Header />
+          <div className="relative isolate flex flex-1 flex-col">{children}</div>
           <Footer />
         </Providers>
       </body>
