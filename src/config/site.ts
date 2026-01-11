@@ -3,7 +3,7 @@ export const SITE_INFO = {
   url: process.env.APP_URL || "https://luisllanes.com",
   description: "",
   shortDescription: "",
-  ogImage: "",
+  ogImage: "https://luisllanes.com/assets/opengraph-image.png",
   keywords: [
     "México",
     "Portfolio",
