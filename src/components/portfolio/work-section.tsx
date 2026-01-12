@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -15,23 +16,25 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 export function WorkSection() {
   return (
     <section className="section-padding-y flex flex-col gap-6" id="work">
-      <h2 className="trail-highlight font-medium">My Work</h2>
+      <h2 className="heading trail-highlight">My Work</h2>
       <div className="grid grid-cols-1 gap-4">
         {WORK.map((project) => (
           <Card key={project.name} className="group">
             <CardHeader>
               {project.type === "oss-contribution" && (
-                <Badge variant="secondary" className="justify-self-end">
-                  OSS Contribution
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="size-3.5" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Not my own project, I&apos;m just a contributor!
-                    </TooltipContent>
-                  </Tooltip>
-                </Badge>
+                <CardAction>
+                  <Badge variant="secondary" className="justify-self-end">
+                    OSS Contribution
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="size-3.5" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Not my own project, I&apos;m just a contributor!
+                      </TooltipContent>
+                    </Tooltip>
+                  </Badge>
+                </CardAction>
               )}
 
               <CardTitle className="group-hover:text-highlight transition-colors">
@@ -43,7 +46,7 @@ export function WorkSection() {
             </CardHeader>
 
             {project.content && (
-              <CardContent className="flex flex-col gap-4">
+              <CardContent className="flex flex-col gap-2">
                 <p>{project.content.text}</p>
                 <ul className="list-custom">
                   {project.content.features?.map((feature) => (
@@ -101,13 +104,13 @@ const WORK: Work[] = [
     name: "tweakcn",
     description: "A visual no-code theme editor for shadcn/ui components.",
     content: {
-      text: "I was building my own theme editor, then I dropped it to contribute to tweakcn instead, here are some of the features I built:",
+      text: "After 50+ PRs, here are some of the features I built:",
       features: [
-        "AI Theme Generator",
+        "AI theme generation",
         "Custom website preview",
         "Tailwind V4 color picker",
         "Google Fonts picker",
-        "Shadcn-like cards preview",
+        "Cards preview",
       ],
     },
     url: "https://tweakcn.com/editor/theme?tab=ai&p=custom",

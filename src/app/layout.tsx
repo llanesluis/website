@@ -79,9 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
       </head>
 
-      <body
-        className={`${fontVariables} flex min-h-svh flex-col overscroll-none scroll-smooth lowercase`}
-      >
+      <body className={`${fontVariables} flex min-h-svh flex-col overscroll-none scroll-smooth`}>
         <Providers>
           <Header />
           <div className="relative isolate flex flex-1 flex-col">{children}</div>

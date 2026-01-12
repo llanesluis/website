@@ -6,7 +6,7 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/comp
 export function ProjectsSection() {
   return (
     <section className="section-padding-y flex flex-col gap-6" id="work">
-      <h2 className="trail-highlight font-medium">Projects</h2>
+      <h2 className="heading trail-highlight">Projects</h2>
       <div className="grid grid-cols-1 gap-4">
         {PROJECTS.map((project) => (
           <Card key={project.name} className="group">

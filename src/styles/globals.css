@@ -228,6 +228,10 @@
   @apply after:text-highlight after:inline after:content-["\_"];
 }
 
+@utility heading {
+  @apply font-mono font-medium lowercase;
+}
+
 @utility list-custom {
   @apply list-none;
 
