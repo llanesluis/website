@@ -31,7 +31,7 @@ export function OverviewSection() {
                 Shadcraft
               </Link>
             </li>
-            <li className="text-sm">Based in México</li>
+            <li className="text-sm">Based in Mexico</li>
             <li className="text-sm">
               <LocalTime />
             </li>
