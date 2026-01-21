@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { LocalTime } from "@/components/portfolio/local-time";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SOCIALS } from "@/config/socials";
+import { LocalTime } from "@/features/portfolio/components/local-time";
 
 export function OverviewSection() {
   return (
@@ -16,11 +16,11 @@ export function OverviewSection() {
             </Avatar>
           </Link>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-6">
             <h1 className="heading trail-highlight">Luis Llanes</h1>
             <p className="text-muted-foreground text-balance">
-              I&apos;m a Software Engineer who cares about the little details, mostly focused on the
-              frontend.
+              Hey, I&apos;m a Software Engineer and Web Developer. I like the frontend and I care
+              deeply about the little details.
             </p>
           </div>
 
@@ -38,13 +38,13 @@ export function OverviewSection() {
           </ul>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="group flex flex-col items-end gap-4">
           {SOCIALS.map((social) => (
             <Link
               key={social.name}
               href={social.url}
               target="_blank"
-              className="link text-right text-sm"
+              className="link text-sm transition-opacity delay-50 ease-out group-has-[:hover]:opacity-50 group-has-[:hover]:hover:opacity-100"
             >
               {social.name}
             </Link>

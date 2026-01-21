@@ -1,6 +1,6 @@
-import { OverviewSection } from "@/components/portfolio/overview-section";
-import { ProjectsSection } from "@/components/portfolio/projects-section";
-import { WorkSection } from "@/components/portfolio/work-section";
+import { OverviewSection } from "@/features/portfolio/components/overview-section";
+import { ProjectsSection } from "@/features/portfolio/components/projects-section";
+import { WorkSection } from "@/features/portfolio/components/work-section";
 
 export default function Home() {
   return (

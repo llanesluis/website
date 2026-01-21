@@ -78,7 +78,7 @@
   --primary-foreground: oklch(0.985 0 0);
   --highlight: var(--color-rose-600);
   --highlight-foreground: var(--color-rose-50);
-  --secondary: oklch(0.92 0 0); /* --color-neutral-200 */
+  --secondary: oklch(0.94 0 0); /* slightly lighter than --color-neutral-200 */
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -179,18 +179,18 @@
 
   /* Custom scrollbar styling. Thanks @shadcn-ui */
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 5px;
+    background: var(--muted-foreground);
+    border-radius: 6px;
   }
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
+    scrollbar-color: var(--muted-foreground) transparent;
   }
 
   [id] {
@@ -199,7 +199,7 @@
 }
 
 @utility container {
-  @apply mx-auto w-full max-w-3xl;
+  @apply mx-auto w-full max-w-2xl;
 }
 
 @utility container-padding-x {
@@ -221,7 +221,7 @@
 }
 
 @utility link {
-  @apply text-primary hover:text-primary/80 font-medium underline underline-offset-2 transition-all hover:no-underline;
+  @apply text-primary hover:text-highlight underline underline-offset-2 transition-all hover:underline-offset-3;
 }
 
 @utility trail-highlight {
@@ -245,5 +245,24 @@
 
   &::before {
     @apply text-highlight absolute left-0 content-['\_'];
+  }
+}
+
+@utility backdrop-grid {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--background) 2px, transparent 2px),
+      linear-gradient(to bottom, var(--background) 2px, transparent 2px);
+    opacity: 0.75;
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: -1;
+    transform: translateZ(0);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
   }
 }
