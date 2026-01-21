@@ -263,6 +263,5 @@
     pointer-events: none;
     z-index: -1;
     transform: translateZ(0);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
   }
 }
