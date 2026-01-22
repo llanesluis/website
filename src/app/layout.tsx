@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   keywords: SITE_INFO.keywords,
   authors: [{ name: SITE_INFO.creator.name, url: SITE_INFO.url }],
   creator: SITE_INFO.creator.name,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -71,12 +74,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: darkModeScript }} />
-        <script async crossOrigin="anonymous" src="https://tweakcn.com/live-preview.min.js" />
         {/*
           Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
           since we found the regular `<script>` tag to not execute when rendering a not-found page.
-         */}
+          */}
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
+        <Script
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+          src="https://tweakcn.com/live-preview.min.js"
+        />
       </head>
 
       <body className={`${fontVariables} flex min-h-svh flex-col overscroll-none scroll-smooth`}>
