@@ -1,8 +1,8 @@
 "use client";
 
+import * as React from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -46,7 +46,7 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
         </Button>
       </ContextMenuTrigger>
 
-      <ContextMenuContent className="*:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground w-auto min-w-0 space-y-1">
+      <ContextMenuContent className="w-auto min-w-0 space-y-1 *:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground">
         <ContextMenuItem data-active={theme === "light"} onClick={() => handleThemeChange("light")}>
           Light Mode
         </ContextMenuItem>

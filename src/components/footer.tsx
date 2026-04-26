@@ -6,7 +6,7 @@ import { SOCIALS } from "@/config/socials";
 
 export function Footer() {
   return (
-    <footer className="container-padding-x container flex flex-col gap-6 pt-12 pb-12 lg:pb-24">
+    <footer className="container flex flex-col gap-6 container-padding-x pt-12 pb-12 lg:pb-24">
       <div className="flex items-center gap-2">
         <Link href="/">
           <LogoMark />
@@ -17,7 +17,7 @@ export function Footer() {
       <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-2">
           <p className="trail-highlight text-sm">2026</p>
-          <p className="text-muted-foreground text-xs">
+          <p className="text-xs text-muted-foreground">
             Source code available{" "}
             <Link href="https://github.com/llanesluis/website" target="_blank" className="link">
               here
@@ -31,7 +31,7 @@ export function Footer() {
               key={social.name}
               href={social.url}
               target="_blank"
-              className="link text-sm transition-opacity delay-50 ease-out group-has-[:hover]:opacity-50 group-has-[:hover]:hover:opacity-100"
+              className="text-sm link transition-opacity delay-50 ease-out group-has-[:hover]:opacity-50 group-has-[:hover]:hover:opacity-100"
             >
               {social.name}
             </Link>

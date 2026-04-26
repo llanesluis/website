@@ -4,7 +4,7 @@ import { WorkSection } from "@/features/portfolio/components/work-section";
 
 export default function Home() {
   return (
-    <main className="container-padding-x container">
+    <main className="container container-padding-x">
       <OverviewSection />
       <WorkSection />
       <ProjectsSection />

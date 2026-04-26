@@ -6,7 +6,7 @@ import { LocalTime } from "@/features/portfolio/components/local-time";
 
 export function OverviewSection() {
   return (
-    <section className="section-padding-y flex flex-col gap-6" id="overview">
+    <section className="flex flex-col gap-6 section-padding-y" id="overview">
       <div className="grid w-full grid-cols-[1fr_auto] gap-6">
         <div className="flex flex-col gap-6">
           <Link href="/" className="no-underline">
@@ -17,8 +17,8 @@ export function OverviewSection() {
           </Link>
 
           <div className="flex flex-col gap-6">
-            <h1 className="heading trail-highlight">Luis Llanes</h1>
-            <p className="text-muted-foreground text-balance">
+            <h1 className="trail-highlight heading">Luis Llanes</h1>
+            <p className="text-balance text-muted-foreground">
               Hey, I&apos;m a Software Engineer and Web Developer. I like the frontend and I care
               deeply about the little details.
             </p>
@@ -44,7 +44,7 @@ export function OverviewSection() {
               key={social.name}
               href={social.url}
               target="_blank"
-              className="link text-sm transition-opacity delay-50 ease-out group-has-[:hover]:opacity-50 group-has-[:hover]:hover:opacity-100"
+              className="text-sm link transition-opacity delay-50 ease-out group-has-[:hover]:opacity-50 group-has-[:hover]:hover:opacity-100"
             >
               {social.name}
             </Link>

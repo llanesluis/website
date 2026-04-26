@@ -1,10 +1,10 @@
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export function WorkSection() {
   return (
-    <section className="section-padding-y flex flex-col gap-6" id="work">
-      <h2 className="heading trail-highlight">My Work</h2>
+    <section className="flex flex-col gap-6 section-padding-y" id="work">
+      <h2 className="trail-highlight heading">My Work</h2>
 
       <div className="group/container grid grid-cols-1 divide-y divide-dashed">
         {WORK.map((work) => (
@@ -23,21 +23,21 @@ function WorkItem({ work }: { work: Work }) {
       <div className="flex flex-col items-start gap-x-6 gap-y-4 md:flex-row">
         <div className="flex flex-col gap-2 md:w-1/3">
           {work.type === "contribution" && (
-            <span className="text-muted-foreground group-hover/item:text-highlight w-fit font-mono text-xs font-medium lowercase">
+            <span className="w-fit font-mono text-xs font-medium text-muted-foreground lowercase group-hover/item:text-highlight">
               Contribution
             </span>
           )}
           <h3 className="text-balance">
             {work.name}{" "}
-            <ArrowUpRight className="text-muted-foreground inline-block size-3.5 shrink-0 group-hover/item:visible md:invisible" />
+            <ArrowUpRight className="inline-block size-3.5 shrink-0 text-muted-foreground group-hover/item:visible md:invisible" />
           </h3>
         </div>
 
         <div className="flex flex-1 flex-col items-start gap-4">
-          <p className="text-muted-foreground text-sm text-pretty">{work.description}</p>
+          <p className="text-sm text-pretty text-muted-foreground">{work.description}</p>
 
           {work.features && (
-            <ul className="list-custom text-muted-foreground space-y-1 text-sm">
+            <ul className="list-custom space-y-1 text-sm text-muted-foreground">
               {work.features.map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
