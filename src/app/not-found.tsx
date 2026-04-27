@@ -22,8 +22,8 @@ export default function NotFound() {
             <ArrowLeftIcon className="size-4" /> Go back
           </Button>
 
-          <Button variant="secondary" asChild>
-            <Link href="/">Go to home page</Link>
+          <Button variant="secondary" render={<Link href="/" />}>
+            Go to home page
           </Button>
         </div>
       </div>

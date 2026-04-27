@@ -36,9 +36,7 @@ export function ScreenSizeIndicator({
   if (showTooltip) {
     return (
       <Tooltip>
-        <TooltipTrigger asChild>
-          <BreakpointIndicator className={className} {...props} />
-        </TooltipTrigger>
+        <TooltipTrigger render={<BreakpointIndicator className={className} {...props} />} />
         <TooltipContent side="right" className="flex items-center gap-1 font-mono">
           <span className="flex items-center gap-0.5">
             <MoveHorizontal className="size-3 text-muted-foreground" /> {screenSize.width}px
