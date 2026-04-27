@@ -9,8 +9,7 @@ export const SITE_CONFIG = {
   title: "Luis Llanes | Software Engineer and Web Developer",
   name: "luisllanes.com",
   url: BASE_URL,
-  description:
-    "Software Engineer and Web Developer who cares deeply about the little details; working at Shadcraft.",
+  description: "Software Engineer and Web Developer who cares deeply about the little details.",
   shortDescription: "Software Engineer and Web Developer who cares about the little details.",
   ogImage: `${BASE_URL}/opengraph-image.png`,
   keywords: [

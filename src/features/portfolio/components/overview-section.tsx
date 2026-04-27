@@ -27,8 +27,8 @@ export function OverviewSection() {
           <ul className="list-custom flex flex-col gap-2">
             <li className="text-sm">
               Working at{" "}
-              <Link href="https://shadcraft.com" target="_blank" className="link">
-                Shadcraft
+              <Link href="https://shadcncraft.com" target="_blank" className="link">
+                shadcncraft
               </Link>
             </li>
             <li className="text-sm">Based in Mexico</li>

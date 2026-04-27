@@ -3,17 +3,9 @@ import type { Work } from "@/features/portfolio/types";
 export const WORK: Work[] = [
   {
     type: "work",
-    name: "Shadcraft Registry",
-    description:
-      "A shadcn/ui compatible registry of premium quality, production-ready marketing and application components and blocks.",
-    url: "https://registry-shadcraft.vercel.app/",
-  },
-  {
-    type: "work",
-    name: "Shadcraft Free Registry",
-    description:
-      "A free, opensource shadcn/ui compatible registry of marketing components and blocks.",
-    url: "https://shadcraft-free.vercel.app/",
+    name: "shadcncraft",
+    description: "Production-ready shadcn/ui design system.",
+    url: "https://shadcncraft.com",
   },
   {
     type: "contribution",
