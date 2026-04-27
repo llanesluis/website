@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { SOCIALS } from "@/config/socials";
 import { LocalTime } from "@/features/portfolio/components/local-time";
+import { SOCIALS } from "@/features/portfolio/data/socials";
 
 export function OverviewSection() {
   return (
@@ -39,7 +39,7 @@ export function OverviewSection() {
         </div>
 
         <div className="group flex flex-col items-end gap-4">
-          {SOCIALS.map((social) => (
+          {Object.values(SOCIALS).map((social) => (
             <Link
               key={social.name}
               href={social.url}

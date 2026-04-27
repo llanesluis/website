@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { LogoMark } from "@/components/logo-mark";
 import { Separator } from "@/components/ui/separator";
-import { SOCIALS } from "@/config/socials";
+import { SOCIALS } from "@/features/portfolio/data/socials";
 
 export function Footer() {
   return (
@@ -26,7 +26,7 @@ export function Footer() {
         </div>
 
         <div className="group flex flex-wrap items-start gap-4">
-          {SOCIALS.map((social) => (
+          {Object.values(SOCIALS).map((social) => (
             <Link
               key={social.name}
               href={social.url}

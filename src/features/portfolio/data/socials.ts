@@ -1,19 +1,18 @@
-// TODO: Move this to a place where the rest of the user info is (will be*) stored
-export const SOCIALS = [
-  {
+export const SOCIALS = {
+  github: {
     name: "GitHub",
     url: "https://github.com/llanesluis",
   },
-  {
+  linkedin: {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/llanesluis/",
   },
-  {
+  twitter: {
     name: "Twitter",
     url: "https://x.com/luisllanes_",
   },
-  {
+  email: {
     name: "Email",
     url: "mailto:luisllaboj@gmail.com",
   },
-];
+} as const;

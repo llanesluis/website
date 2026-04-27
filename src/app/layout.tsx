@@ -3,8 +3,8 @@ import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import { Providers } from "@/components/providers";
 import { META_THEME_COLORS, SITE_CONFIG } from "@/config/site";
 import { fontVariables } from "@/lib/fonts";

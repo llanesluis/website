@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import { PROJECTS } from "@/features/portfolio/data/projects";
+import type { Project } from "@/features/portfolio/types";
+
 export function ProjectsSection() {
   return (
-    <section className="flex flex-col gap-6 section-padding-y" id="work">
+    <section className="flex flex-col gap-6 section-padding-y" id="projects">
       <h2 className="trail-highlight heading">Projects</h2>
 
       <div className="group/container grid grid-cols-1 divide-y">
@@ -35,18 +38,3 @@ function ProjectItem({ project }: { project: Project }) {
     </article>
   );
 }
-
-type Project = {
-  name: string;
-  description: string;
-  url: string;
-};
-
-const PROJECTS: Project[] = [
-  {
-    name: "Themux",
-    description:
-      "A shadcn/ui theme generator, supporting Tailwind CSS v3 and v4. Not longer maintained.",
-    url: "https://themux.vercel.app",
-  },
-];
