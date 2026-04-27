@@ -3,6 +3,7 @@
 import * as React from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useHotkeys } from "react-hotkeys-hook";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,32 +19,37 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
   const { setTheme, resolvedTheme, theme } = useTheme();
   const { setMetaColor } = useMetaColor();
 
-  const handleThemeChange = React.useCallback(
-    (newTheme: "light" | "dark" | "system") => {
-      setTheme(newTheme);
-      if (newTheme === "light") {
-        setMetaColor(META_THEME_COLORS.light);
-      } else if (newTheme === "dark") {
-        setMetaColor(META_THEME_COLORS.dark);
-      } else {
-        // For system, use resolvedTheme to determine the color
-        setMetaColor(resolvedTheme === "dark" ? META_THEME_COLORS.dark : META_THEME_COLORS.light);
-      }
-    },
-    [resolvedTheme, setTheme, setMetaColor]
-  );
+  const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
+    setTheme(newTheme);
+    setMetaColor(
+      newTheme === "dark" || (newTheme === "system" && resolvedTheme === "dark")
+        ? META_THEME_COLORS.dark
+        : META_THEME_COLORS.light
+    );
+  };
 
-  const switchTheme = React.useCallback(() => {
-    handleThemeChange(resolvedTheme === "dark" ? "light" : "dark");
-  }, [resolvedTheme, handleThemeChange]);
+  const switchTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    setMetaColor(resolvedTheme === "dark" ? META_THEME_COLORS.light : META_THEME_COLORS.dark);
+  };
+
+  useHotkeys("d", () => switchTheme());
 
   return (
-    <ContextMenu modal={false}>
-      <ContextMenuTrigger asChild>
-        <Button variant="ghost" size="icon" onClick={switchTheme} title="Toggle theme" {...props}>
-          {resolvedTheme === "dark" ? <SunIcon /> : <MoonIcon />}
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+    <ContextMenu>
+      <ContextMenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={switchTheme}
+            title="Toggle theme"
+            {...props}
+          />
+        }
+      >
+        {resolvedTheme === "dark" ? <SunIcon /> : <MoonIcon />}
+        <span className="sr-only">Toggle theme</span>
       </ContextMenuTrigger>
 
       <ContextMenuContent className="w-auto min-w-0 space-y-1 *:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground">
