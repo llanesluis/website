@@ -3,49 +3,53 @@ import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import { Providers } from "@/components/providers";
-import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
+import { META_THEME_COLORS, SITE_CONFIG } from "@/config/site";
 import { fontVariables } from "@/lib/fonts";
 
-export const metadata: Metadata = {
-  title: {
-    default: SITE_INFO.name,
-    template: `%s | ${SITE_INFO.name}`,
-  },
-  metadataBase: new URL(SITE_INFO.url),
-  description: SITE_INFO.description,
-  keywords: SITE_INFO.keywords,
-  authors: [{ name: SITE_INFO.creator.name, url: SITE_INFO.url }],
-  creator: SITE_INFO.creator.name,
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: process.env.NEXT_PUBLIC_APP_BASE_URL,
-    title: SITE_INFO.name,
-    description: SITE_INFO.description,
-    siteName: SITE_INFO.name,
-    images: [
-      {
-        url: SITE_INFO.ogImage,
-        width: 1200,
-        height: 630,
-        alt: SITE_INFO.name,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_INFO.name,
-    description: SITE_INFO.description,
-    images: [SITE_INFO.ogImage],
-    creator: SITE_INFO.creator.twitterUsername,
-  },
-};
+export function generateMetadata(): Metadata {
+  const title = SITE_CONFIG.title;
+  const name = SITE_CONFIG.name;
+  const description = SITE_CONFIG.description;
+  const url = SITE_CONFIG.url;
+  const ogImage = SITE_CONFIG.ogImage;
+  const keywords = SITE_CONFIG.keywords;
+  const creator = SITE_CONFIG.creator;
+
+  return {
+    title: {
+      default: title,
+      template: `%s – ${name}`,
+    },
+    metadataBase: new URL(url),
+    description,
+    keywords,
+    authors: [{ name: creator.name, url: url }],
+    creator: creator.twitterUsername,
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url,
+      title,
+      description,
+      siteName: name,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: name }],
+      creator: creator.twitterUsername,
+    },
+    publisher: creator.name,
+    icons: {
+      icon: [{ url: "/favicon.ico", sizes: "any" }],
+    },
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -71,7 +75,7 @@ const darkModeScript = String.raw`
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={fontVariables}>
       <head>
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: darkModeScript }} />
         {/*
@@ -79,14 +83,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           since we found the regular `<script>` tag to not execute when rendering a not-found page.
           */}
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
-        <Script
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-          src="https://tweakcn.com/live-preview.min.js"
-        />
       </head>
 
-      <body className={`${fontVariables} flex min-h-svh flex-col overscroll-none scroll-smooth`}>
+      <body className={`flex min-h-svh flex-col overscroll-none scroll-smooth`}>
         <Providers>
           <Header />
           <div className="relative isolate flex flex-1 flex-col">{children}</div>

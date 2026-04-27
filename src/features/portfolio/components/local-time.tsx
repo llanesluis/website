@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { TZDate, tzOffset } from "@date-fns/tz";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
 
 // Mazatlan, Sinaloa: UTC-7 (Mexico no longer observes DST)
 const TIME_ZONE = "America/Mazatlan";

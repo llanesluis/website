@@ -1,7 +1,7 @@
 "use client";
 
-import { MoveHorizontal, MoveVertical } from "lucide-react";
 import * as React from "react";
+import { MoveHorizontal, MoveVertical } from "lucide-react";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
@@ -36,15 +36,13 @@ export function ScreenSizeIndicator({
   if (showTooltip) {
     return (
       <Tooltip>
-        <TooltipTrigger asChild>
-          <BreakpointIndicator className={className} {...props} />
-        </TooltipTrigger>
+        <TooltipTrigger render={<BreakpointIndicator className={className} {...props} />} />
         <TooltipContent side="right" className="flex items-center gap-1 font-mono">
           <span className="flex items-center gap-0.5">
-            <MoveHorizontal className="text-muted-foreground size-3" /> {screenSize.width}px
+            <MoveHorizontal className="size-3 text-muted-foreground" /> {screenSize.width}px
           </span>
           <span className="flex items-center gap-0.5">
-            <MoveVertical className="text-muted-foreground size-3" /> {screenSize.height}px
+            <MoveVertical className="size-3 text-muted-foreground" /> {screenSize.height}px
           </span>
         </TooltipContent>
       </Tooltip>
@@ -62,7 +60,7 @@ function BreakpointIndicator({
     <div
       data-breakpoint-indicator=""
       className={cn(
-        "bg-secondary text-secondary-foreground z-50 flex size-8 items-center justify-center rounded-md border p-2 font-mono text-xs",
+        "z-50 flex size-8 items-center justify-center rounded-md border bg-secondary p-2 font-mono text-xs text-secondary-foreground",
         className
       )}
       {...props}

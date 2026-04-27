@@ -28,14 +28,14 @@ public/
 stubs/
 drizzle/
 
-# Config files that should maintain their format
-*.config.js
-*.config.mjs
-*.config.cjs
-*.config.ts
-
 # Environment files
 .env*
+!.env.example
 
 # Markdown files
 *.md 
+
+# Agents
+.agents/
+.claude/
+.cursor/

@@ -1,6 +1,7 @@
 import { ThemeProvider } from "next-themes";
 
 import { ScreenSizeIndicator } from "@/components/screen-size-indicator";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +12,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
       enableColorScheme
     >
-      {children}
+      <TooltipProvider>{children}</TooltipProvider>
 
       <ScreenSizeIndicator className="fixed right-2 bottom-2" showTooltip />
     </ThemeProvider>

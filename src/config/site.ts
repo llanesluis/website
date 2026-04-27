@@ -1,10 +1,17 @@
-export const SITE_INFO = {
-  name: "Luis Llanes | Software Engineer and Web Developer",
-  url: process.env.APP_URL || "https://luisllanes.com",
-  description:
-    "Software Engineer and Web Developer who cares deeply about the little details; working at Shadcraft.",
+function normalizeSiteUrl(raw: string): string {
+  // Remove trailing slashes
+  return raw.trim().replace(/\/+$/, "");
+}
+
+const BASE_URL = normalizeSiteUrl(process.env.NEXT_PUBLIC_BASE_URL || "https://luisllanes.com");
+
+export const SITE_CONFIG = {
+  title: "Luis Llanes | Software Engineer and Web Developer",
+  name: "luisllanes.com",
+  url: BASE_URL,
+  description: "Software Engineer and Web Developer who cares deeply about the little details.",
   shortDescription: "Software Engineer and Web Developer who cares about the little details.",
-  ogImage: "https://luisllanes.com/assets/opengraph-image.png",
+  ogImage: `${BASE_URL}/opengraph-image.png`,
   keywords: [
     "Software Engineer",
     "Developer",
@@ -45,6 +52,7 @@ export const MAIN_NAVIGATION = [
 ] as const;
 
 export const GITHUB_USERNAME = "llanesluis";
+
 export const SOURCE_CODE_GITHUB_REPO = "llanesluis/website";
 export const SOURCE_CODE_GITHUB_URL = "https://github.com/llanesluis/website";
 export const SPONSORSHIP_URL = "https://github.com/sponsors/llanesluis";

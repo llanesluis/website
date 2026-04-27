@@ -1,18 +1,19 @@
 "use client";
 
-import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ArrowLeftIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+
 export default function NotFound() {
   const router = useRouter();
 
   return (
-    <main className="container-padding-x section-padding-y container">
+    <main className="container container-padding-x section-padding-y">
       <div className="flex flex-col gap-6">
-        <h1 className="heading trail-highlight">Not Found</h1>
-        <p className="text-muted-foreground text-balance">
+        <h1 className="trail-highlight heading">Not Found</h1>
+        <p className="text-balance text-muted-foreground">
           The page you are looking for does not exist.
         </p>
 
@@ -21,8 +22,8 @@ export default function NotFound() {
             <ArrowLeftIcon className="size-4" /> Go back
           </Button>
 
-          <Button variant="secondary" asChild>
-            <Link href="/">Go to home page</Link>
+          <Button variant="secondary" render={<Link href="/" />}>
+            Go to home page
           </Button>
         </div>
       </div>
