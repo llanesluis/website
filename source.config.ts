@@ -1,5 +1,11 @@
 import { defineConfig, defineDocs } from "fumadocs-mdx/config";
+import rehypePrettyCode from "rehype-pretty-code";
 import { z } from "zod";
+
+// `transformers` is shared with the standalone highlighter (src/lib/highlight-code)
+// so MDX code fences and `<CodeBlock>` outside MDX produce identical markup.
+// Relative import: source.config is bundled from the repo root, not via `@/*`.
+import { transformers } from "./src/lib/highlight-code";
 
 // The blog collection. Add `.mdx` files to `content/blog/` — each needs the
 // frontmatter below. This is the only content source; the site renders it with
@@ -21,14 +27,21 @@ export const blog = defineDocs({
 
 export default defineConfig({
   mdxOptions: {
-    // Dual themes so generated code blocks emit the same
-    // `[data-rehype-pretty-code-figure]` + `--shiki-light/--shiki-dark`
-    // markup the existing globals.css already styles.
-    rehypeCodeOptions: {
-      themes: {
-        light: "github-light",
-        dark: "github-dark",
-      },
+    rehypePlugins: (plugins) => {
+      // Drop Fumadocs' built-in rehype-code (first plugin) and highlight with
+      // rehype-pretty-code instead, so its `[data-rehype-pretty-code-*]` DOM
+      // matches globals.css and the shared transformers apply.
+      plugins.shift();
+      plugins.push([
+        rehypePrettyCode,
+        {
+          theme: { dark: "github-dark", light: "github-light" },
+          // Drop Shiki's inline background; globals.css paints `bg-code` instead.
+          keepBackground: false,
+          transformers,
+        },
+      ]);
+      return plugins;
     },
   },
 });
