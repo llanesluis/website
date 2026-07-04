@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 
-import { PROJECTS } from "@/features/portfolio/data/projects";
-import type { Project } from "@/features/portfolio/types";
+import { PROJECTS } from "@/config/projects";
 
-export function ProjectsSection() {
+export function Projects() {
+  if (PROJECTS.length === 0) return null;
+
   return (
     <section className="flex flex-col gap-6 section-padding-y" id="projects">
       <h2 className="trail-highlight heading">Projects</h2>
@@ -20,14 +21,14 @@ export function ProjectsSection() {
   );
 }
 
-function ProjectItem({ project }: { project: Project }) {
+function ProjectItem({ project }: { project: (typeof PROJECTS)[number] }) {
   return (
     <article className="group/item py-6 transition-opacity ease-out group-hover/container:opacity-50 hover:opacity-100">
       <div className="flex flex-col items-start gap-x-6 gap-y-4 md:flex-row">
         <div className="flex flex-col gap-2 md:w-1/3">
           <h3 className="text-balance">
             {project.name}{" "}
-            <ArrowUpRight className="inline-block size-3.5 shrink-0 text-muted-foreground group-hover/item:visible md:invisible" />
+            <IconArrowUpRight className="inline-block size-3.5 shrink-0 text-muted-foreground group-hover/item:visible md:invisible" />
           </h3>
         </div>
 

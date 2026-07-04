@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeftIcon } from "lucide-react";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -19,7 +19,7 @@ export default function NotFound() {
 
         <div className="flex gap-4">
           <Button onClick={() => router.back()}>
-            <ArrowLeftIcon className="size-4" /> Go back
+            <IconArrowLeft className="size-4" /> Go back
           </Button>
 
           <Button variant="secondary" render={<Link href="/" />}>

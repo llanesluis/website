@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 
-import { WORK } from "@/features/portfolio/data/work";
-import type { Work } from "@/features/portfolio/types";
+import { WORK } from "@/config/work";
 
-export function WorkSection() {
+export function Work() {
   return (
     <section className="flex flex-col gap-6 section-padding-y" id="work">
       <h2 className="trail-highlight heading">My Work</h2>
@@ -20,7 +19,7 @@ export function WorkSection() {
   );
 }
 
-function WorkItem({ work }: { work: Work }) {
+function WorkItem({ work }: { work: (typeof WORK)[number] }) {
   return (
     <article className="group/item py-6 transition-opacity ease-out group-hover/container:opacity-50 hover:opacity-100">
       <div className="flex flex-col items-start gap-x-6 gap-y-4 md:flex-row">
@@ -32,7 +31,7 @@ function WorkItem({ work }: { work: Work }) {
           )}
           <h3 className="text-balance">
             {work.name}{" "}
-            <ArrowUpRight className="inline-block size-3.5 shrink-0 text-muted-foreground group-hover/item:visible md:invisible" />
+            <IconArrowUpRight className="inline-block size-3.5 shrink-0 text-muted-foreground group-hover/item:visible md:invisible" />
           </h3>
         </div>
 

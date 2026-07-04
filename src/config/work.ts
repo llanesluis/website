@@ -1,5 +1,6 @@
-import type { Work } from "@/features/portfolio/types";
+import type { Work } from "@/types";
 
+/** Things you've worked on or contributed to. */
 export const WORK: Work[] = [
   {
     type: "work",

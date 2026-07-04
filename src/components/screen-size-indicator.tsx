@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { MoveHorizontal, MoveVertical } from "lucide-react";
+import { IconArrowsHorizontal, IconArrowsVertical } from "@tabler/icons-react";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
@@ -39,10 +39,10 @@ export function ScreenSizeIndicator({
         <TooltipTrigger render={<BreakpointIndicator className={className} {...props} />} />
         <TooltipContent side="right" className="flex items-center gap-1 font-mono">
           <span className="flex items-center gap-0.5">
-            <MoveHorizontal className="size-3 text-muted-foreground" /> {screenSize.width}px
+            <IconArrowsHorizontal className="size-3 text-muted-foreground" /> {screenSize.width}px
           </span>
           <span className="flex items-center gap-0.5">
-            <MoveVertical className="size-3 text-muted-foreground" /> {screenSize.height}px
+            <IconArrowsVertical className="size-3 text-muted-foreground" /> {screenSize.height}px
           </span>
         </TooltipContent>
       </Tooltip>
