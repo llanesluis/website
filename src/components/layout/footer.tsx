@@ -1,29 +1,25 @@
 import Link from "next/link";
 
 import { EmailLink } from "@/components/email-link";
-import { LogoMark } from "@/components/logo-mark";
 import { Separator } from "@/components/ui/separator";
+import { AUTHOR } from "@/config/author";
+import { SITE_CONFIG, SOURCE_CODE_GITHUB_URL } from "@/config/site";
 import { SOCIALS } from "@/config/socials";
 
+/** Minimal contact footer: how to reach {@link AUTHOR}, plus the repo it's built from. */
 export function Footer() {
   return (
     <footer className="container flex flex-col gap-6 container-padding-x pt-12 pb-12 lg:pb-24">
-      <div className="flex items-center gap-2">
-        <Link href="/">
-          <LogoMark />
-        </Link>
-        <Separator className="flex-1 border-t border-dashed bg-transparent" />
-      </div>
+      <Separator className="border-t border-dashed bg-transparent" />
 
       <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
-        <div className="flex flex-col gap-2">
-          <p className="trail-highlight text-sm">2026</p>
-          <p className="text-xs text-muted-foreground">
-            Source code available{" "}
-            <Link href="https://github.com/llanesluis/website" target="_blank" className="link">
-              here
-            </Link>
+        <div className="flex flex-col gap-2 text-xs text-muted-foreground">
+          <p>
+            © {new Date().getFullYear()} {AUTHOR.name}
           </p>
+          <Link href={SOURCE_CODE_GITHUB_URL} target="_blank" className="link">
+            {SITE_CONFIG.name} on GitHub
+          </Link>
         </div>
 
         <div className="group flex flex-col items-end gap-4">
