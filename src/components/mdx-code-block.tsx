@@ -21,7 +21,7 @@ export const mdxCodeComponents = {
         : null;
 
     return (
-      <figcaption className={cn("[&_svg]:size-4 [&_svg]:shrink-0", className)} {...props}>
+      <figcaption className={cn("h-10 [&_svg]:size-4 [&_svg]:shrink-0", className)} {...props}>
         {language && getIconForLanguageExtension(language)}
         <span className="truncate">{children}</span>
       </figcaption>
@@ -58,10 +58,10 @@ export const mdxCodeComponents = {
       return (
         <CodeBlockCommand
           className="rounded-none border-0 bg-transparent"
-          __npm__={__npm__}
-          __yarn__={__yarn__}
-          __pnpm__={__pnpm__}
-          __bun__={__bun__}
+          pnpm={__pnpm__}
+          yarn={__yarn__}
+          npm={__npm__}
+          bun={__bun__}
         />
       );
     }
@@ -76,9 +76,10 @@ export const mdxCodeComponents = {
       <>
         {__raw__ && (
           <CopyButton
-            value={__raw__}
-            label="Code"
-            className="absolute top-3 right-3 z-10 rounded-md border bg-background/70 p-1.5 opacity-0 backdrop-blur transition-opacity group-hover/figure:opacity-100 focus-visible:opacity-100"
+            text={__raw__}
+            variant="ghost"
+            size="icon-sm"
+            className="absolute top-2 right-2 z-10"
           />
         )}
         <code data-slot="code-block" className={cn(className)} {...props} />

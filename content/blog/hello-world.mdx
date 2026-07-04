@@ -16,7 +16,13 @@ pages are rendered with this site's own minimal styles.
 Drop an `.mdx` file into `content/blog/` with a little frontmatter and it shows
 up here, sorted by date.
 
-```ts title="greet.ts" {2}
+```ts title="greet.ts"
+export function greet(name: string) {
+  return `hi, ${name}`;
+}
+```
+
+```ts title="greet.ts" showLineNumbers {2}
 export function greet(name: string) {
   return `hi, ${name}`;
 }

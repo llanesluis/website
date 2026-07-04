@@ -1,35 +1,78 @@
 "use client";
 
-import { useState } from "react";
-import { IconCheck, IconCopy } from "@tabler/icons-react";
-import { toast } from "sonner";
+import type { ComponentProps } from "react";
+import { IconCheck, IconCopy, IconX } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
+import { IconSwap, IconSwapItem } from "@/components/icon-swap";
+import { Button } from "@/components/ui/button";
+import { useCopyToClipboard, type CopyState } from "@/hooks/use-copy-to-clipboard";
 import { cn } from "@/lib/utils";
 
+export type CopyStateIconProps = {
+  state: CopyState;
+  /** Custom icon for idle state. */
+  idleIcon?: React.ReactNode;
+  /** Custom icon for done state. */
+  doneIcon?: React.ReactNode;
+  /** Custom icon for error state. */
+  errorIcon?: React.ReactNode;
+};
+
+export function CopyStateIcon({ state, idleIcon, doneIcon, errorIcon }: CopyStateIconProps) {
+  return (
+    <IconSwap>
+      <IconSwapItem key={state} as={motion.span}>
+        {state === "idle" && (idleIcon ?? <IconCopy data-slot="idle-icon" />)}
+
+        {state === "done" && (doneIcon ?? <IconCheck data-slot="done-icon" />)}
+
+        {state === "error" && (errorIcon ?? <IconX data-slot="error-icon" />)}
+      </IconSwapItem>
+    </IconSwap>
+  );
+}
+
+export type CopyButtonProps = ComponentProps<typeof Button> & {
+  /** The text to copy, or a function that returns the text. */
+  text: string | (() => string);
+  /** Called with the copied text on successful copy. */
+  onCopySuccess?: (text: string) => void;
+  /** Called with the error if the copy operation fails. */
+  onCopyError?: (error: Error) => void;
+} & Omit<CopyStateIconProps, "state">;
+
 export function CopyButton({
-  value,
-  label = "Copy",
   className,
-}: {
-  value: string;
-  label?: string;
-  className?: string;
-}) {
-  const [copied, setCopied] = useState(false);
+  size = "icon",
+  children,
+  text,
+  idleIcon,
+  doneIcon,
+  errorIcon,
+  onClick,
+  onCopySuccess,
+  onCopyError,
+  ...props
+}: CopyButtonProps) {
+  const { state, copy } = useCopyToClipboard({
+    onCopySuccess,
+    onCopyError,
+  });
 
   return (
-    <button
-      type="button"
-      aria-label={`Copy ${label}`}
-      onClick={async () => {
-        await navigator.clipboard.writeText(value);
-        setCopied(true);
-        toast.success(`${label} copied to clipboard`);
-        setTimeout(() => setCopied(false), 1500);
+    <Button
+      className={cn("will-change-transform", className)}
+      size={size}
+      onClick={(e) => {
+        copy(text);
+        onClick?.(e);
       }}
-      className={cn("inline-flex cursor-pointer items-center", className)}
+      aria-label="Copy"
+      {...props}
     >
-      {copied ? <IconCheck className="size-3.5" /> : <IconCopy className="size-3.5" />}
-    </button>
+      <CopyStateIcon state={state} idleIcon={idleIcon} doneIcon={doneIcon} errorIcon={errorIcon} />
+      {children}
+    </Button>
   );
 }
