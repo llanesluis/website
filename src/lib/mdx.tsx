@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 
-import { Pre } from "@/components/code-block";
+import { mdxCodeComponents } from "@/components/mdx-code-block";
 
 /**
  * Renders a heading whose text links to itself, revealing a `#` on hover.
@@ -52,7 +52,7 @@ export function getMDXComponents(overrides?: MDXComponents): MDXComponents {
     h2: anchoredHeading("h2"),
     h3: anchoredHeading("h3"),
     h4: anchoredHeading("h4"),
-    pre: Pre,
+    ...mdxCodeComponents,
     ...overrides,
   };
 }

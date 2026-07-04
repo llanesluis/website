@@ -16,10 +16,16 @@ pages are rendered with this site's own minimal styles.
 Drop an `.mdx` file into `content/blog/` with a little frontmatter and it shows
 up here, sorted by date.
 
-```ts
+```ts title="greet.ts" {2}
 export function greet(name: string) {
   return `hi, ${name}`;
 }
+```
+
+Inline code like `pnpm dev` and a package command both work. Install a dependency:
+
+```bash
+npm install fumadocs-core
 ```
 
 That's the whole workflow.
