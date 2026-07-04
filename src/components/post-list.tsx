@@ -18,7 +18,7 @@ export function PostList({ posts, className }: { posts: Post[]; className?: stri
         <li key={post.url}>
           <Link href={post.url} className="group/post flex flex-col gap-1 py-4">
             <span className="flex items-baseline justify-between gap-4">
-              <span className="text-balance transition-colors group-hover/post:text-highlight">
+              <span className="text-balance after:text-highlight after:opacity-0 after:transition-opacity after:duration-150 after:ease-out after:content-['\_'] group-hover/post:after:opacity-100">
                 {post.data.title}
               </span>
               <time
