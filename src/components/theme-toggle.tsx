@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { MoonIcon, SunIcon } from "lucide-react";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { useHotkeys } from "react-hotkeys-hook";
 
@@ -48,7 +48,8 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
           />
         }
       >
-        {resolvedTheme === "dark" ? <SunIcon /> : <MoonIcon />}
+        <IconSun className="hidden dark:block" />
+        <IconMoon className="block dark:hidden" />
         <span className="sr-only">Toggle theme</span>
       </ContextMenuTrigger>
 

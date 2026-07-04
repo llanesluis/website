@@ -1,11 +1,12 @@
 import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 
+import { InlineScript } from "@/components/inline-script";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Providers } from "@/components/providers";
+import { Toaster } from "@/components/ui/sonner";
 import { META_THEME_COLORS, SITE_CONFIG } from "@/config/site";
 import { fontVariables } from "@/lib/fonts";
 
@@ -77,12 +78,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning className={fontVariables}>
       <head>
-        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: darkModeScript }} />
-        {/*
-          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
-          since we found the regular `<script>` tag to not execute when rendering a not-found page.
-          */}
-        <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
+        <InlineScript html={darkModeScript} />
       </head>
 
       <body className={`flex min-h-svh flex-col overscroll-none scroll-smooth`}>
@@ -90,6 +86,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
           <div className="relative isolate flex flex-1 flex-col">{children}</div>
           <Footer />
+          <Toaster />
         </Providers>
       </body>
     </html>
