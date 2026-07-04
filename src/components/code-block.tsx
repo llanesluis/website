@@ -19,7 +19,7 @@ export function Pre({ className, ...props }: React.ComponentProps<"pre">) {
     <div className="group relative">
       <button
         type="button"
-        aria-label="Copy code"
+        aria-label="Copy Code"
         onClick={async () => {
           await navigator.clipboard.writeText(ref.current?.textContent ?? "");
           setCopied(true);

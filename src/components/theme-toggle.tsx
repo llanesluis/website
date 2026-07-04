@@ -43,14 +43,14 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
             variant="ghost"
             size="icon"
             onClick={switchTheme}
-            title="Toggle theme"
+            title="Toggle Theme"
             {...props}
           />
         }
       >
         <IconSun className="hidden dark:block" />
         <IconMoon className="block dark:hidden" />
-        <span className="sr-only">Toggle theme</span>
+        <span className="sr-only">Toggle Theme</span>
       </ContextMenuTrigger>
 
       <ContextMenuContent className="w-auto min-w-0 space-y-1 *:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground">

@@ -20,7 +20,7 @@ export function CopyButton({
   return (
     <button
       type="button"
-      aria-label={`Copy ${label.toLowerCase()}`}
+      aria-label={`Copy ${label}`}
       onClick={async () => {
         await navigator.clipboard.writeText(value);
         setCopied(true);

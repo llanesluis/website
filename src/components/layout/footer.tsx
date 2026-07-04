@@ -26,7 +26,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="group flex flex-wrap items-start gap-4">
+        <div className="group flex flex-col items-end gap-4">
           {Object.values(SOCIALS).map((social) => {
             const itemClass =
               "text-sm link transition-opacity delay-50 ease-out group-has-[:hover]:opacity-50 group-has-[:hover]:hover:opacity-100";

@@ -75,7 +75,7 @@ export function CopyPage({
       <ButtonGroupSeparator />
       <DropdownMenu>
         <DropdownMenuTrigger
-          render={<Button variant="secondary" size="icon-sm" aria-label="More copy options" />}
+          render={<Button variant="secondary" size="icon-sm" aria-label="More Copy Options" />}
         >
           <IconChevronDown />
         </DropdownMenuTrigger>
