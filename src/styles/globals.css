@@ -388,3 +388,57 @@
     );
   }
 }
+
+@utility link-underline {
+  @apply underline decoration-current/30 decoration-1 underline-offset-3 transition-colors hover:decoration-current;
+}
+
+/* ---------------------------------------------------------------------------
+   View Transitions
+   A subtle blur-fade on every route change (enabled via
+   `experimental.viewTransition` in next.config.ts). The sticky, backdrop-blurred
+   header is kept stable so it doesn't flash mid-transition.
+--------------------------------------------------------------------------- */
+:root {
+  --duration-exit: 150ms;
+  --duration-enter: 210ms;
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+::view-transition-old(root) {
+  animation: var(--duration-exit) ease-in vt-fade reverse;
+}
+::view-transition-new(root) {
+  animation: var(--duration-enter) ease-out var(--duration-exit) both vt-fade;
+}
+
+/* Keep the sticky header out of the page snapshot (avoids a backdrop-blur flash). */
+::view-transition-group(persistent-nav) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(persistent-nav) {
+  display: none;
+}
+::view-transition-new(persistent-nav) {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
