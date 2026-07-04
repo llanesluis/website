@@ -1,13 +1,17 @@
-import { OverviewSection } from "@/features/portfolio/components/overview-section";
-import { ProjectsSection } from "@/features/portfolio/components/projects-section";
-import { WorkSection } from "@/features/portfolio/components/work-section";
+import { Contributions } from "@/components/sections/contributions";
+import { Intro } from "@/components/sections/intro";
+import { Projects } from "@/components/sections/projects";
+import { Work } from "@/components/sections/work";
+import { Writing } from "@/components/sections/writing";
 
 export default function Home() {
   return (
     <main className="container container-padding-x">
-      <OverviewSection />
-      <WorkSection />
-      <ProjectsSection />
+      <Intro />
+      <Work />
+      <Projects />
+      <Writing />
+      <Contributions />
     </main>
   );
 }
