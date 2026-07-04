@@ -267,6 +267,18 @@
   @apply font-mono font-medium lowercase;
 }
 
+/* On hover of any direct child, fade the *other* children. `:has` scopes it to
+   real child hovers, so hovering the container's dead space dims nothing. */
+@utility dim-siblings {
+  & > * {
+    @apply transition-opacity duration-150 ease-out;
+  }
+
+  &:has(> *:hover) > *:not(:hover) {
+    @apply opacity-50;
+  }
+}
+
 @utility list-custom {
   @apply list-none;
 

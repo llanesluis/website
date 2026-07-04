@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { PostList } from "@/components/post-list";
 import { getSortedPosts } from "@/lib/source";
 
 export function Writing() {
@@ -15,23 +16,7 @@ export function Writing() {
         </Link>
       </div>
 
-      <ul className="group/container flex flex-col divide-y divide-dashed">
-        {posts.map((post) => (
-          <li key={post.url}>
-            <Link
-              href={post.url}
-              className="group/item flex flex-col gap-1 py-4 transition-opacity ease-out group-hover/container:opacity-50 hover:opacity-100"
-            >
-              <span className="text-balance">{post.data.title}</span>
-              {post.data.description && (
-                <span className="text-sm text-pretty text-muted-foreground">
-                  {post.data.description}
-                </span>
-              )}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <PostList posts={posts} />
     </section>
   );
 }
