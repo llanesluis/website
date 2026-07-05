@@ -35,8 +35,7 @@ export async function CodeBlock({
       )}
 
       <CopyButton
-        value={code}
-        label="Code"
+        text={code}
         className="absolute top-3 right-3 z-10 rounded-md border bg-background/70 p-1.5 opacity-0 backdrop-blur transition-opacity group-hover/figure:opacity-100 focus-visible:opacity-100"
       />
 
