@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { MoonIcon, SunIcon } from "lucide-react";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { useHotkeys } from "react-hotkeys-hook";
 
@@ -12,6 +12,8 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { Kbd } from "@/components/ui/kbd";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-colors";
 
@@ -33,24 +35,27 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
     setMetaColor(resolvedTheme === "dark" ? META_THEME_COLORS.light : META_THEME_COLORS.dark);
   };
 
-  useHotkeys("d", () => switchTheme());
+  useHotkeys("d, m", () => switchTheme());
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={switchTheme}
-            title="Toggle theme"
-            {...props}
-          />
-        }
-      >
-        {resolvedTheme === "dark" ? <SunIcon /> : <MoonIcon />}
-        <span className="sr-only">Toggle theme</span>
-      </ContextMenuTrigger>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <ContextMenuTrigger
+              render={<Button variant="ghost" size="icon" onClick={switchTheme} {...props} />}
+            >
+              <IconSun className="hidden dark:block" />
+              <IconMoon className="block dark:hidden" />
+              <span className="sr-only">Toggle Theme</span>
+            </ContextMenuTrigger>
+          }
+        />
+        <TooltipContent>
+          Toggle Theme
+          <Kbd>D</Kbd>
+        </TooltipContent>
+      </Tooltip>
 
       <ContextMenuContent className="w-auto min-w-0 space-y-1 *:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground">
         <ContextMenuItem data-active={theme === "light"} onClick={() => handleThemeChange("light")}>

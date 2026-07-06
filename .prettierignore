@@ -27,6 +27,7 @@ yarn.lock
 public/
 stubs/
 drizzle/
+.source/
 
 # Environment files
 .env*

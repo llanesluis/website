@@ -1,3 +1,5 @@
+import { AUTHOR } from "@/config/author";
+
 function normalizeSiteUrl(raw: string): string {
   // Remove trailing slashes
   return raw.trim().replace(/\/+$/, "");
@@ -6,7 +8,7 @@ function normalizeSiteUrl(raw: string): string {
 const BASE_URL = normalizeSiteUrl(process.env.NEXT_PUBLIC_BASE_URL || "https://luisllanes.com");
 
 export const SITE_CONFIG = {
-  title: "Luis Llanes | Software Engineer and Web Developer",
+  title: `${AUTHOR.name} | ${AUTHOR.role}`,
   name: "luisllanes.com",
   url: BASE_URL,
   description: "Software Engineer and Web Developer who cares deeply about the little details.",
@@ -29,9 +31,9 @@ export const SITE_CONFIG = {
     "shadcn",
   ],
   creator: {
-    name: "Luis Llanes",
-    twitterUsername: "@luisllanes_",
-    githubUsername: "llanesluis",
+    name: AUTHOR.name,
+    twitterUsername: AUTHOR.twitterUsername,
+    githubUsername: AUTHOR.githubUsername,
   },
 };
 
@@ -51,7 +53,7 @@ export const MAIN_NAVIGATION = [
   },
 ] as const;
 
-export const GITHUB_USERNAME = "llanesluis";
+export const GITHUB_USERNAME = AUTHOR.githubUsername;
 
 export const SOURCE_CODE_GITHUB_REPO = "llanesluis/website";
 export const SOURCE_CODE_GITHUB_URL = "https://github.com/llanesluis/website";

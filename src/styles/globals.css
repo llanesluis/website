@@ -126,7 +126,7 @@
   --success-foreground: var(--color-green-50);
   --warning: var(--color-orange-600);
   --warning-foreground: var(--color-orange-50);
-  --code: var(--color-neutral-50);
+  --code: var(--color-neutral-100);
   --code-foreground: var(--color-neutral-800);
   --code-number: var(--color-neutral-400);
   --code-highlight: oklch(94% 0 0);
@@ -267,6 +267,18 @@
   @apply font-mono font-medium lowercase;
 }
 
+/* On hover of any direct child, fade the *other* children. `:has` scopes it to
+   real child hovers, so hovering the container's dead space dims nothing. */
+@utility dim-siblings {
+  & > * {
+    @apply transition-opacity duration-150 ease-out;
+  }
+
+  &:has(> *:hover) > *:not(:hover) {
+    @apply opacity-50;
+  }
+}
+
 @utility list-custom {
   @apply list-none;
 
@@ -280,24 +292,6 @@
 
   &::before {
     @apply absolute left-0 text-highlight content-['\_'];
-  }
-}
-
-@utility backdrop-grid {
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, var(--background) 2px, transparent 2px),
-      linear-gradient(to bottom, var(--background) 2px, transparent 2px);
-    opacity: 0.75;
-    background-size: 4px 4px;
-    pointer-events: none;
-    z-index: -1;
-    transform: translateZ(0);
   }
 }
 
@@ -329,6 +323,36 @@
   @apply prose-code:inline-code prose-code:before:content-none prose-code:after:content-none;
   @apply prose-strong:font-medium;
   @apply prose-hr:border-border;
+
+  /* Preflight resets `ul`/`ol` markers, and the typography plugin re-applies
+     them with zero-specificity `:where()` selectors that lose to it. Restore
+     list rendering here — unordered lists use the site's `_` highlight marker
+     (see `list-highlight-item`); ordered lists keep numeric markers. Spacing is
+     done with item margins, not flex, so `ol` items stay `display: list-item`
+     and render their numbers. */
+  & :where(ul, ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    @apply my-4;
+  }
+
+  & :where(ul, ol) > li {
+    @apply my-2;
+  }
+
+  & :where(ul) > li {
+    @apply relative ps-[1.5ch];
+  }
+
+  & :where(ul) > li::before {
+    @apply absolute start-0 text-highlight content-['\_'];
+  }
+
+  & :where(ol) {
+    @apply list-decimal ps-[2.5ch];
+  }
+
+  & :where(ol) > li::marker {
+    @apply font-mono text-xs text-muted-foreground;
+  }
 }
 
 @layer components {
@@ -387,4 +411,8 @@
       var(--fade-color, var(--background)) 48px
     );
   }
+}
+
+@utility link-underline {
+  @apply underline decoration-current/30 decoration-1 underline-offset-3 transition-colors hover:decoration-current;
 }
