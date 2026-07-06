@@ -295,24 +295,6 @@
   }
 }
 
-@utility backdrop-grid {
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, var(--background) 2px, transparent 2px),
-      linear-gradient(to bottom, var(--background) 2px, transparent 2px);
-    opacity: 0.75;
-    background-size: 4px 4px;
-    pointer-events: none;
-    z-index: -1;
-    transform: translateZ(0);
-  }
-}
-
 @utility inline-code {
   @apply rounded-sm border bg-muted/50 px-1.5 py-0.5 font-mono text-xs font-medium whitespace-pre-wrap text-code-foreground in-data-table-nowrap:whitespace-nowrap;
 }
