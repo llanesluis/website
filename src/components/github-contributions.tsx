@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import { format } from "date-fns";
 
 import {
@@ -18,33 +17,40 @@ import { cn } from "@/lib/utils";
 
 export function GitHubContributions({
   contributions,
-  githubProfileUrl,
+  username,
   className,
 }: {
-  contributions: Promise<Activity[]>;
-  githubProfileUrl: string;
+  contributions: Activity[];
+  username: string;
   className?: string;
 }) {
-  const data = use(contributions);
-
   return (
     <ContributionGraph
-      className={cn("mx-auto py-2", className)}
-      data={data}
-      blockSize={11}
-      blockMargin={3}
-      blockRadius={2}
+      className={cn("mx-auto gap-4 py-4", className)}
+      data={contributions}
+      blockSize={12}
+      blockMargin={2}
+      blockRadius={0}
+      aria-label="GitHub Contributions Graph"
     >
-      <ContributionGraphCalendar className="no-scrollbar px-2" title="GitHub Contributions">
+      <ContributionGraphCalendar
+        className="no-scrollbar px-4 **:data-[slot=month-labels]:text-muted-foreground"
+        title="GitHub Contributions"
+        aria-hidden
+      >
         {({ activity, dayIndex, weekIndex }) => (
           <Tooltip>
-            <TooltipTrigger render={<g />}>
-              <ContributionGraphBlock
-                activity={activity}
-                dayIndex={dayIndex}
-                weekIndex={weekIndex}
-              />
-            </TooltipTrigger>
+            <TooltipTrigger
+              render={
+                <g>
+                  <ContributionGraphBlock
+                    activity={activity}
+                    dayIndex={dayIndex}
+                    weekIndex={weekIndex}
+                  />
+                </g>
+              }
+            />
             <TooltipContent className="font-sans">
               <p>
                 {activity.count} contribution{activity.count > 1 ? "s" : null} on{" "}
@@ -55,14 +61,14 @@ export function GitHubContributions({
         )}
       </ContributionGraphCalendar>
 
-      <ContributionGraphFooter className="px-2">
+      <ContributionGraphFooter className="gap-4 px-4 leading-none">
         <ContributionGraphTotalCount>
-          {({ totalCount, year }) => (
+          {({ totalCount }) => (
             <div className="text-muted-foreground">
-              {totalCount.toLocaleString("en")} contributions in {year} on{" "}
+              {totalCount.toLocaleString("en")} contributions in the past 365 days on{" "}
               <a
                 className="text-foreground link-underline"
-                href={githubProfileUrl}
+                href={`https://github.com/${username}`}
                 target="_blank"
                 rel="noopener"
               >
@@ -73,7 +79,7 @@ export function GitHubContributions({
           )}
         </ContributionGraphTotalCount>
 
-        <ContributionGraphLegend />
+        <ContributionGraphLegend aria-hidden />
       </ContributionGraphFooter>
     </ContributionGraph>
   );
@@ -81,7 +87,7 @@ export function GitHubContributions({
 
 export function GitHubContributionsFallback() {
   return (
-    <div className="flex h-40.5 w-full items-center justify-center">
+    <div className="flex h-45 w-full items-center justify-center">
       <Spinner className="text-muted-foreground" />
     </div>
   );
