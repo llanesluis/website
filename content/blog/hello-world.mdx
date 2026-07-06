@@ -1,37 +1,34 @@
 ---
 title: Hello, world
-description: How this site and its blog are built.
+description: What this site runs on, and a few details I cared about.
 date: "2026-01-15"
 author: Luis Llanes
 tags:
   - meta
 ---
 
-Welcome. This blog is powered by [Fumadocs](https://fumadocs.dev) running
-_headless_ — it handles MDX, frontmatter and the table of contents, while the
-pages are rendered with this site's own minimal styles.
+I rebuilt my site. Figured the first post might as well be about the thing
+you're reading it on.
 
-## Writing a post
+The stack is boring in the good way: Next.js 16, React 19 with the compiler on,
+Tailwind v4, Motion for animation, Shiki for code, and a few shadcn and Base UI
+pieces so I'm not rebuilding a dropdown for the hundredth time. Nothing here
+would surprise you.
 
-Drop an `.mdx` file into `content/blog/` with a little frontmatter and it shows
-up here, sorted by date.
+What I actually spent time on is the stuff you don't notice until it's missing.
 
-```ts title="greet.ts"
-export function greet(name: string) {
-  return `hi, ${name}`;
-}
-```
+Try moving between a couple of pages. The content blurs and fades while the
+header stays put. That's the View Transitions API, and getting it to feel right,
+fast enough to not annoy but slow enough to register, took more fiddling than I'd
+like to admit. If you keep reduced motion on, it stays out of your way.
 
-```ts title="greet.ts" showLineNumbers {2}
-export function greet(name: string) {
-  return `hi, ${name}`;
-}
-```
+Themes get the same attention. Dark and light each have their own code
+highlighting, and you can flip between them without touching the mouse. Hit D
+or M.
 
-Inline code like `pnpm dev` and a package command both work. Install a dependency:
+Then there's the stuff that never makes a changelog. Easing curves. Where a
+border sits. How much room things get to breathe. On its own none of it matters.
+Together it's the whole difference between a site that feels built and one that
+feels assembled.
 
-```bash
-npm install fumadocs-core
-```
-
-That's the whole workflow.
+That's the tour. I'll write about actual things here soon.

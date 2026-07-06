@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { format } from "date-fns";
 
 import { CopyPage } from "@/components/copy-page";
+import { formatPostDate } from "@/lib/dates";
 import { getMDXComponents } from "@/lib/mdx";
+import { formatReadingTime, getReadingTime } from "@/lib/reading-time";
 import { source } from "@/lib/source";
 import { absoluteUrl } from "@/lib/url";
 
@@ -27,19 +28,21 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
 
   const MDX = page.data.body;
   const raw = await page.data.getText("raw");
+  const readingTime = page.data.readingTime ?? getReadingTime(raw);
 
   return (
     <main className="container container-padding-x section-padding-y">
-      <article className="prose-no-margin prose-custom">
+      <article className="prose-custom prose-no-margin">
         <div className="not-prose mb-8 flex items-start justify-between gap-4">
           <div className="flex flex-col gap-2">
             <h1 className="trail-highlight heading text-2xl">{page.data.title}</h1>
-            <time
-              dateTime={new Date(page.data.date).toISOString()}
-              className="font-mono text-xs text-muted-foreground"
-            >
-              {format(new Date(page.data.date), "MMMM d, yyyy")}
-            </time>
+            <p className="flex flex-wrap items-center gap-x-2 font-mono text-xs text-muted-foreground">
+              <time dateTime={new Date(page.data.date).toISOString()} className="whitespace-nowrap">
+                {formatPostDate(page.data.date)}
+              </time>
+              <span aria-hidden>·</span>
+              <span className="whitespace-nowrap">{formatReadingTime(readingTime)}</span>
+            </p>
           </div>
           <CopyPage content={raw} url={absoluteUrl(page.url)} markdownUrl={`/llm${page.url}`} />
         </div>

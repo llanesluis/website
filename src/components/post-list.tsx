@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { format } from "date-fns";
 
+import { formatPostDate } from "@/lib/dates";
 import { getSortedPosts } from "@/lib/source";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +25,7 @@ export function PostList({ posts, className }: { posts: Post[]; className?: stri
                 dateTime={new Date(post.data.date).toISOString()}
                 className="shrink-0 font-mono text-xs text-muted-foreground"
               >
-                {format(new Date(post.data.date), "MMM d, yyyy")}
+                {formatPostDate(post.data.date, "MMM d, yyyy")}
               </time>
             </span>
             {post.data.description && (

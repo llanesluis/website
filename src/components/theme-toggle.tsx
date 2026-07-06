@@ -33,7 +33,7 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
     setMetaColor(resolvedTheme === "dark" ? META_THEME_COLORS.light : META_THEME_COLORS.dark);
   };
 
-  useHotkeys("d", () => switchTheme());
+  useHotkeys("d, m", () => switchTheme());
 
   return (
     <ContextMenu>

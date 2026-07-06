@@ -21,6 +21,9 @@ export const blog = defineDocs({
       author: z.string().optional(),
       published: z.boolean().default(true),
       tags: z.array(z.string()).optional(),
+      // Manual read-time override in minutes. When omitted, it's estimated from
+      // the post body (see `src/lib/reading-time.ts`).
+      readingTime: z.coerce.number().int().positive().optional(),
     }),
   },
 });

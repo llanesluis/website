@@ -126,7 +126,7 @@
   --success-foreground: var(--color-green-50);
   --warning: var(--color-orange-600);
   --warning-foreground: var(--color-orange-50);
-  --code: var(--color-neutral-50);
+  --code: var(--color-neutral-100);
   --code-foreground: var(--color-neutral-800);
   --code-number: var(--color-neutral-400);
   --code-highlight: oklch(94% 0 0);
@@ -341,6 +341,36 @@
   @apply prose-code:inline-code prose-code:before:content-none prose-code:after:content-none;
   @apply prose-strong:font-medium;
   @apply prose-hr:border-border;
+
+  /* Preflight resets `ul`/`ol` markers, and the typography plugin re-applies
+     them with zero-specificity `:where()` selectors that lose to it. Restore
+     list rendering here — unordered lists use the site's `_` highlight marker
+     (see `list-highlight-item`); ordered lists keep numeric markers. Spacing is
+     done with item margins, not flex, so `ol` items stay `display: list-item`
+     and render their numbers. */
+  & :where(ul, ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    @apply my-4;
+  }
+
+  & :where(ul, ol) > li {
+    @apply my-2;
+  }
+
+  & :where(ul) > li {
+    @apply relative ps-[1.5ch];
+  }
+
+  & :where(ul) > li::before {
+    @apply absolute start-0 text-highlight content-['\_'];
+  }
+
+  & :where(ol) {
+    @apply list-decimal ps-[2.5ch];
+  }
+
+  & :where(ol) > li::marker {
+    @apply font-mono text-xs text-muted-foreground;
+  }
 }
 
 @layer components {
@@ -407,13 +437,16 @@
 
 /* ---------------------------------------------------------------------------
    View Transitions
-   A subtle blur-fade on every route change (enabled via
-   `experimental.viewTransition` in next.config.ts). The sticky, backdrop-blurred
-   header is kept stable so it doesn't flash mid-transition.
+   A subtle blur-fade on every route change. React's `<ViewTransition name="page">`
+   in `app/layout.tsx` wraps the content + footer (React suppresses the browser's
+   default root transition, so unwrapped content wouldn't animate). The group is
+   left to interpolate its own box: when the outgoing page was scrolled, its
+   snapshot starts at the scrolled position and eases up as it fades, instead of
+   snapping to the top. Enabled via `experimental.viewTransition` in next.config.ts.
 --------------------------------------------------------------------------- */
 :root {
-  --duration-exit: 150ms;
-  --duration-enter: 210ms;
+  --duration-exit: 6000ms;
+  --duration-enter: 6000ms;
 }
 
 @keyframes vt-fade {
@@ -427,10 +460,10 @@
   }
 }
 
-::view-transition-old(root) {
+::view-transition-old(.page-fade) {
   animation: var(--duration-exit) ease-in vt-fade reverse;
 }
-::view-transition-new(root) {
+::view-transition-new(.page-fade) {
   animation: var(--duration-enter) ease-out var(--duration-exit) both vt-fade;
 }
 
