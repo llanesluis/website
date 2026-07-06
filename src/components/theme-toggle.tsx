@@ -12,6 +12,8 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { Kbd } from "@/components/ui/kbd";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-colors";
 
@@ -37,21 +39,23 @@ export function ThemeToggle({ onClick, ...props }: React.ComponentProps<typeof B
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={switchTheme}
-            title="Toggle Theme"
-            {...props}
-          />
-        }
-      >
-        <IconSun className="hidden dark:block" />
-        <IconMoon className="block dark:hidden" />
-        <span className="sr-only">Toggle Theme</span>
-      </ContextMenuTrigger>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <ContextMenuTrigger
+              render={<Button variant="ghost" size="icon" onClick={switchTheme} {...props} />}
+            >
+              <IconSun className="hidden dark:block" />
+              <IconMoon className="block dark:hidden" />
+              <span className="sr-only">Toggle Theme</span>
+            </ContextMenuTrigger>
+          }
+        />
+        <TooltipContent>
+          Toggle Theme
+          <Kbd>D</Kbd>
+        </TooltipContent>
+      </Tooltip>
 
       <ContextMenuContent className="w-auto min-w-0 space-y-1 *:data-[active=true]:bg-accent *:data-[active=true]:text-accent-foreground">
         <ContextMenuItem data-active={theme === "light"} onClick={() => handleThemeChange("light")}>
