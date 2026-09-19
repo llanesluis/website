@@ -4,7 +4,7 @@ import { EmailLink } from "@/components/email-link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Separator } from "@/components/ui/separator";
 import { AUTHOR } from "@/config/author";
-import { SITE_CONFIG, SOURCE_CODE_GITHUB_URL } from "@/config/site";
+import { SOURCE_CODE_GITHUB_URL } from "@/config/site";
 import { SOCIALS } from "@/config/socials";
 
 /** Minimal contact footer: how to reach {@link AUTHOR}, plus the repo it's built from. */
@@ -19,7 +19,7 @@ export function Footer() {
             © {new Date().getFullYear()} {AUTHOR.name}
           </p>
           <Link href={SOURCE_CODE_GITHUB_URL} target="_blank" className="link">
-            {SITE_CONFIG.name} on GitHub
+            View code
           </Link>
           <ThemeToggle size="icon-sm" className="mt-2" />
         </div>
