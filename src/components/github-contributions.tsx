@@ -1,7 +1,5 @@
 "use client";
 
-import { format } from "date-fns";
-
 import {
   ContributionGraph,
   ContributionGraphBlock,
@@ -13,6 +11,7 @@ import {
 } from "@/components/contribution-graph";
 import { Spinner } from "@/components/ui/spinner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { formatPostDate } from "@/lib/dates";
 import { cn } from "@/lib/utils";
 
 export function GitHubContributions({
@@ -53,8 +52,8 @@ export function GitHubContributions({
             />
             <TooltipContent className="font-sans">
               <p>
-                {activity.count} contribution{activity.count > 1 ? "s" : null} on{" "}
-                {format(new Date(activity.date), "dd.MM.yyyy")}
+                {activity.count} contribution{activity.count === 1 ? null : "s"} on{" "}
+                {formatPostDate(activity.date, "MMM d, yyyy")}
               </p>
             </TooltipContent>
           </Tooltip>
