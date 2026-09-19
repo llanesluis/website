@@ -26,7 +26,7 @@ export function GitHubContributions({
 }) {
   return (
     <ContributionGraph
-      className={cn("mx-auto gap-4 py-4", className)}
+      className={cn("gap-4", className)}
       data={contributions}
       blockSize={12}
       blockMargin={2}
@@ -34,7 +34,7 @@ export function GitHubContributions({
       aria-label="GitHub Contributions Graph"
     >
       <ContributionGraphCalendar
-        className="no-scrollbar px-4 **:data-[slot=month-labels]:text-muted-foreground"
+        className="no-scrollbar **:data-[slot=month-labels]:text-muted-foreground"
         title="GitHub Contributions"
         aria-hidden
       >
@@ -61,7 +61,7 @@ export function GitHubContributions({
         )}
       </ContributionGraphCalendar>
 
-      <ContributionGraphFooter className="gap-4 px-4 leading-none">
+      <ContributionGraphFooter className="gap-4 leading-none">
         <ContributionGraphTotalCount>
           {({ totalCount }) => (
             <div className="text-muted-foreground">
