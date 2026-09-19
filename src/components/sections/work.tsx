@@ -8,7 +8,7 @@ export function Work() {
     <section className="flex flex-col gap-6 section-padding-y" id="work">
       <h2 className="trail-highlight heading">My Work</h2>
 
-      <div className="group/container grid grid-cols-1 divide-y divide-dashed">
+      <div className="group/container grid grid-cols-1 divide-y divide-dotted">
         {WORK.map((work) => (
           <Link key={work.name} href={work.url} target="_blank">
             <WorkItem work={work} />

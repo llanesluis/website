@@ -126,7 +126,7 @@ export function CodeBlockCommand({
           setPackageManager(value as PackageManager);
         }}
       >
-        <ScrollArea.Root className="w-full border-b border-dashed pr-10">
+        <ScrollArea.Root className="w-full border-b border-dotted pr-10">
           <TabsList
             variant="line"
             className={cn(

@@ -11,7 +11,7 @@ import { SOCIALS } from "@/config/socials";
 export function Footer() {
   return (
     <footer className="container flex flex-col gap-6 container-padding-x pt-12 pb-24">
-      <Separator className="border-t border-dashed bg-transparent" />
+      <Separator className="border-t border-dotted bg-transparent" />
 
       <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-2 text-xs text-muted-foreground">
