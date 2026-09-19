@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IconArrowLeft } from "@tabler/icons-react";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export default function NotFound() {
   const router = useRouter();
@@ -12,19 +12,22 @@ export default function NotFound() {
   return (
     <main className="container container-padding-x section-padding-y">
       <div className="flex flex-col gap-6">
+        <p aria-hidden className="font-pixel text-7xl leading-none text-highlight select-none">
+          404
+        </p>
         <h1 className="trail-highlight heading">Not Found</h1>
         <p className="text-balance text-muted-foreground">
           The page you are looking for does not exist.
         </p>
 
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           <Button onClick={() => router.back()}>
             <IconArrowLeft className="size-4" /> Go Back
           </Button>
 
-          <Button variant="secondary" render={<Link href="/" />}>
+          <Link href="/" className={buttonVariants({ variant: "secondary" })}>
             Go to Home
-          </Button>
+          </Link>
         </div>
       </div>
     </main>
