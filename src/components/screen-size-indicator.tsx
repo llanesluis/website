@@ -6,8 +6,10 @@ import { IconArrowsHorizontal, IconArrowsVertical } from "@tabler/icons-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
 export function ScreenSizeIndicator({
-  enabled = process.env.NODE_ENV === "development",
+  enabled = isDevelopment,
   showTooltip = false,
   className,
   ...props

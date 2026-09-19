@@ -26,8 +26,8 @@ async function ContributionsSection({ username }: { username: string }) {
   if (!data.length) return null;
 
   return (
-    <section className="flex flex-col gap-6 section-padding-y" id="contributions">
-      <h2 className="trail-highlight heading">Contributions</h2>
+    <section className="flex flex-col gap-6 section-padding-y" id="activity">
+      <h2 className="trail-highlight heading">Activity</h2>
       <GitHubContributions contributions={data} username={username} />
     </section>
   );
@@ -35,8 +35,8 @@ async function ContributionsSection({ username }: { username: string }) {
 
 function ContributionsFallback() {
   return (
-    <section className="flex flex-col gap-6 section-padding-y" id="contributions">
-      <h2 className="trail-highlight heading">Contributions</h2>
+    <section className="flex flex-col gap-6 section-padding-y" id="activity">
+      <h2 className="trail-highlight heading">Activity</h2>
       <GitHubContributionsFallback />
     </section>
   );

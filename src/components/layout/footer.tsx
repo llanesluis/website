@@ -1,16 +1,17 @@
 import Link from "next/link";
 
 import { EmailLink } from "@/components/email-link";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Separator } from "@/components/ui/separator";
 import { AUTHOR } from "@/config/author";
-import { SITE_CONFIG, SOURCE_CODE_GITHUB_URL } from "@/config/site";
+import { SOURCE_CODE_GITHUB_URL } from "@/config/site";
 import { SOCIALS } from "@/config/socials";
 
 /** Minimal contact footer: how to reach {@link AUTHOR}, plus the repo it's built from. */
 export function Footer() {
   return (
-    <footer className="container flex flex-col gap-6 container-padding-x pt-12 pb-12 lg:pb-24">
-      <Separator className="border-t border-dashed bg-transparent" />
+    <footer className="container flex flex-col gap-6 container-padding-x pt-12 pb-24">
+      <Separator className="border-t border-dotted bg-transparent" />
 
       <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-2 text-xs text-muted-foreground">
@@ -18,8 +19,9 @@ export function Footer() {
             © {new Date().getFullYear()} {AUTHOR.name}
           </p>
           <Link href={SOURCE_CODE_GITHUB_URL} target="_blank" className="link">
-            {SITE_CONFIG.name} on GitHub
+            View code
           </Link>
+          <ThemeToggle size="icon-sm" className="mt-2" />
         </div>
 
         <div className="group flex flex-col items-end gap-4">

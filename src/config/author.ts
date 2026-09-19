@@ -9,7 +9,7 @@ export const AUTHOR: Author = {
     "Hey, I'm a Software Engineer and Web Developer. I like the frontend and I care deeply about the little details.",
   avatarUrl: "https://github.com/llanesluis.png",
   location: "Mexico",
-  company: { name: "shadcncraft", url: "https://shadcncraft.com" },
+  company: { name: "UI Rules", url: "https://uirules.com" },
   timeZone: "America/Mazatlan",
   timeZoneLabel: "GMT-7",
   githubUsername: "llanesluis",

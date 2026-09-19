@@ -3,8 +3,9 @@ import { TZDate } from "@date-fns/tz";
 import { format } from "date-fns";
 
 import { EmailLink } from "@/components/email-link";
+import { HalftoneImage } from "@/components/halftone-image";
 import { LocalTime } from "@/components/local-time";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { UiRulesLogoMark } from "@/components/ui-rules-logo-mark";
 import { AUTHOR } from "@/config/author";
 import { SOCIALS } from "@/config/socials";
 
@@ -16,16 +17,11 @@ export function Intro() {
       <div className="grid w-full grid-cols-[1fr_auto] gap-6">
         <div className="flex flex-col gap-6">
           <Link href="/" className="no-underline">
-            <Avatar className="size-12 rounded-none rounded-tr-sm grayscale transition-all hover:grayscale-0">
-              <AvatarImage src={AUTHOR.avatarUrl} />
-              <AvatarFallback className="rounded-inherit font-mono lowercase">
-                {AUTHOR.handle.slice(0, 2)}
-              </AvatarFallback>
-            </Avatar>
+            <HalftoneImage src={AUTHOR.avatarUrl} alt={AUTHOR.name} className="rounded-none" />
           </Link>
 
           <div className="flex flex-col gap-6">
-            <h1 className="trail-highlight heading">{AUTHOR.name}</h1>
+            <h1 className="trail-cursor heading">{AUTHOR.name}</h1>
             <p className="text-balance text-muted-foreground">{AUTHOR.blurb}</p>
           </div>
 
@@ -33,7 +29,12 @@ export function Intro() {
             {AUTHOR.company && (
               <li className="text-sm">
                 Working at{" "}
-                <Link href={AUTHOR.company.url} target="_blank" className="link">
+                <Link
+                  href={AUTHOR.company.url}
+                  target="_blank"
+                  className="inline-flex items-center gap-1.5 align-bottom link"
+                >
+                  <UiRulesLogoMark />
                   {AUTHOR.company.name}
                 </Link>
               </li>

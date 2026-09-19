@@ -39,7 +39,7 @@ export const SITE_CONFIG = {
 
 export const META_THEME_COLORS = {
   light: "#ffffff",
-  dark: "#0a0a0a",
+  dark: "#181818",
 };
 
 export const MAIN_NAVIGATION = [

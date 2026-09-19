@@ -7,18 +7,18 @@ import { cn } from "@/lib/utils";
 type Post = ReturnType<typeof getSortedPosts>[number];
 
 /**
- * Shared list of blog posts — date top-right, dashed separators, title highlight
+ * Shared list of blog posts — date top-right, dotted separators, title highlight
  * on hover, and the `dim-siblings` hover effect. Used by both the home "Writing"
  * teaser and the blog index so the two read identically.
  */
 export function PostList({ posts, className }: { posts: Post[]; className?: string }) {
   return (
-    <ul className={cn("flex flex-col divide-y divide-dashed dim-siblings", className)}>
+    <ul className={cn("flex flex-col divide-y divide-dotted dim-siblings", className)}>
       {posts.map((post) => (
         <li key={post.url}>
           <Link href={post.url} className="group/post flex flex-col gap-1 py-4">
             <span className="flex items-baseline justify-between gap-4">
-              <span className="text-balance after:text-highlight after:opacity-0 after:transition-opacity after:duration-150 after:ease-out after:content-['\_'] group-hover/post:after:opacity-100">
+              <span className="text-balance after:text-highlight after:opacity-0 after:transition-opacity after:duration-150 after:ease-out after:content-['\_'] group-hover/post:after:opacity-100 group-hover/post:after:motion-safe:animate-blink">
                 {post.data.title}
               </span>
               <time

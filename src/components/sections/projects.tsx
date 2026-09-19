@@ -10,7 +10,7 @@ export function Projects() {
     <section className="flex flex-col gap-6 section-padding-y" id="projects">
       <h2 className="trail-highlight heading">Projects</h2>
 
-      <div className="group/container grid grid-cols-1 divide-y">
+      <div className="group/container grid grid-cols-1 divide-y divide-dotted">
         {PROJECTS.map((project) => (
           <Link key={project.name} href={project.url} target="_blank">
             <ProjectItem project={project} />

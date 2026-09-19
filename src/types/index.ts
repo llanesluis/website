@@ -30,8 +30,8 @@ export type Social = {
 };
 
 export type Work = {
-  type: "work" | "contribution";
   name: string;
+  role: string;
   description: string;
   /** Optional bullet list, e.g. features you built. */
   features?: string[];

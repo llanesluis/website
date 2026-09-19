@@ -35,7 +35,9 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
       <article className="prose-custom prose-no-margin">
         <div className="not-prose mb-8 flex items-start justify-between gap-4">
           <div className="flex flex-col gap-2">
-            <h1 className="trail-highlight heading text-2xl">{page.data.title}</h1>
+            <h1 className="trail-highlight heading font-pixel text-3xl lg:text-5xl">
+              {page.data.title}
+            </h1>
             <p className="flex flex-wrap items-center gap-x-2 font-mono text-xs text-muted-foreground">
               <time dateTime={new Date(page.data.date).toISOString()} className="whitespace-nowrap">
                 {formatPostDate(page.data.date)}
