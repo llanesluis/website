@@ -73,11 +73,12 @@ const DEFAULT_LABELS: Labels = {
 };
 
 const THEME = cn(
-  'data-[level="0"]:fill-muted-foreground/5',
-  'data-[level="1"]:fill-muted-foreground/20',
-  'data-[level="2"]:fill-muted-foreground/40',
-  'data-[level="3"]:fill-muted-foreground/60',
-  'data-[level="4"]:fill-muted-foreground/80'
+  "fill-[url(#contribution-graph-dots)]",
+  'data-[level="0"]:opacity-15',
+  'data-[level="1"]:opacity-35',
+  'data-[level="2"]:opacity-55',
+  'data-[level="3"]:opacity-75',
+  'data-[level="4"]:opacity-100'
 );
 
 type ContributionGraphContextType = {
@@ -361,6 +362,17 @@ export const ContributionGraphCalendar = ({
         width={width}
       >
         <title>{title}</title>
+        <defs>
+          <pattern
+            className="text-muted-foreground"
+            height={0.25}
+            id="contribution-graph-dots"
+            patternContentUnits="objectBoundingBox"
+            width={0.25}
+          >
+            <rect fill="currentColor" height={0.18} width={0.18} />
+          </pattern>
+        </defs>
         {!hideMonthLabels && (
           <g data-slot="month-labels" className="fill-current selection:fill-selection-foreground">
             {monthLabels.map(({ label, weekIndex }) => (

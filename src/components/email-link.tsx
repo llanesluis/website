@@ -7,6 +7,8 @@ export function EmailLink({ email, className }: { email: string; className?: str
       <CopyButton
         text={email}
         aria-label="Copy email"
+        variant="ghost"
+        size="icon-xs"
         className="opacity-0 transition-opacity group-hover/email:opacity-100"
       />
       Email
