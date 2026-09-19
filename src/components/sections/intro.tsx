@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { EmailLink } from "@/components/email-link";
 import { HalftoneImage } from "@/components/halftone-image";
 import { LocalTime } from "@/components/local-time";
+import { UiRulesLogoMark } from "@/components/ui-rules-logo-mark";
 import { AUTHOR } from "@/config/author";
 import { SOCIALS } from "@/config/socials";
 
@@ -16,7 +17,7 @@ export function Intro() {
       <div className="grid w-full grid-cols-[1fr_auto] gap-6">
         <div className="flex flex-col gap-6">
           <Link href="/" className="no-underline">
-            <HalftoneImage src={AUTHOR.avatarUrl} alt={AUTHOR.name} className="rounded-full" />
+            <HalftoneImage src={AUTHOR.avatarUrl} alt={AUTHOR.name} className="rounded-none" />
           </Link>
 
           <div className="flex flex-col gap-6">
@@ -28,7 +29,12 @@ export function Intro() {
             {AUTHOR.company && (
               <li className="text-sm">
                 Working at{" "}
-                <Link href={AUTHOR.company.url} target="_blank" className="link">
+                <Link
+                  href={AUTHOR.company.url}
+                  target="_blank"
+                  className="inline-flex items-center gap-1.5 align-bottom link"
+                >
+                  <UiRulesLogoMark />
                   {AUTHOR.company.name}
                 </Link>
               </li>
