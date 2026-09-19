@@ -21,7 +21,7 @@ export function Footer() {
           <Link href={SOURCE_CODE_GITHUB_URL} target="_blank" className="link">
             {SITE_CONFIG.name} on GitHub
           </Link>
-          <ThemeToggle size="icon-sm" className="mt-2 -ml-2" />
+          <ThemeToggle size="icon-sm" className="mt-2" />
         </div>
 
         <div className="group flex flex-col items-end gap-4">
