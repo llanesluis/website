@@ -1,4 +1,5 @@
 import { Figtree, Geist, Geist_Mono } from "next/font/google";
+import { GeistPixelGrid } from "geist/font/pixel";
 
 import { cn } from "@/lib/utils";
 
@@ -17,4 +18,9 @@ const fontMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const fontVariables = cn(fontSans.variable, fontHeading.variable, fontMono.variable);
+export const fontVariables = cn(
+  fontSans.variable,
+  fontHeading.variable,
+  fontMono.variable,
+  GeistPixelGrid.variable
+);
