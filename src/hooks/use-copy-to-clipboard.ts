@@ -25,7 +25,6 @@ export function useCopyToClipboard({
 
   const copy = useCallback(
     async (text: string | (() => string)) => {
-      // Clear any pending reset
       if (resetTimeoutRef.current) {
         clearTimeout(resetTimeoutRef.current);
       }
@@ -47,12 +46,11 @@ export function useCopyToClipboard({
         tiksError();
 
         onCopyError?.(error instanceof Error ? error : new Error("Copy failed"));
-      } finally {
-        // Schedule reset to idle
-        resetTimeoutRef.current = setTimeout(() => {
-          setState("idle");
-        }, resetDelay);
       }
+
+      resetTimeoutRef.current = setTimeout(() => {
+        setState("idle");
+      }, resetDelay);
     },
     [onCopySuccess, onCopyError, haptic, tiksSuccess, tiksError, resetDelay]
   );
