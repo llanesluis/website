@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { EmailLink } from "@/components/email-link";
+import { ExternalLink } from "@/components/external-link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Separator } from "@/components/ui/separator";
 import { AUTHOR } from "@/config/author";
@@ -18,9 +17,9 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {AUTHOR.name}
           </p>
-          <Link href={SOURCE_CODE_GITHUB_URL} target="_blank" className="link">
+          <ExternalLink href={SOURCE_CODE_GITHUB_URL} className="w-fit link">
             View code
-          </Link>
+          </ExternalLink>
           <ThemeToggle size="icon-sm" className="mt-2" />
         </div>
 
@@ -36,9 +35,9 @@ export function Footer() {
                 className={itemClass}
               />
             ) : (
-              <Link key={social.name} href={social.url} target="_blank" className={itemClass}>
+              <ExternalLink key={social.name} href={social.url} className={itemClass}>
                 {social.name}
-              </Link>
+              </ExternalLink>
             );
           })}
         </div>

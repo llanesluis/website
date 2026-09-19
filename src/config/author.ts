@@ -6,7 +6,7 @@ export const AUTHOR: Author = {
   handle: "l_uis",
   role: "Software Engineer and Web Developer",
   blurb:
-    "Hey, I'm a Software Engineer and Web Developer. I like the frontend and I care deeply about the little details.",
+    "I'm a Software Engineer and Web Developer. I like the frontend and I care deeply about the little details.",
   avatarUrl: "https://github.com/llanesluis.png",
   location: "Mexico",
   company: { name: "UI Rules", url: "https://uirules.com" },

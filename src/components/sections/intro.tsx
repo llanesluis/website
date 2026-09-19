@@ -3,6 +3,7 @@ import { TZDate } from "@date-fns/tz";
 import { format } from "date-fns";
 
 import { EmailLink } from "@/components/email-link";
+import { ExternalLink } from "@/components/external-link";
 import { HalftoneImage } from "@/components/halftone-image";
 import { LocalTime } from "@/components/local-time";
 import { UiRulesLogoMark } from "@/components/ui-rules-logo-mark";
@@ -29,14 +30,10 @@ export function Intro() {
             {AUTHOR.company && (
               <li className="text-sm">
                 Working at{" "}
-                <Link
-                  href={AUTHOR.company.url}
-                  target="_blank"
-                  className="inline-flex items-center gap-1.5 align-bottom link"
-                >
-                  <UiRulesLogoMark />
+                <ExternalLink href={AUTHOR.company.url} className="align-bottom link">
+                  <UiRulesLogoMark className="mr-1.5" />
                   {AUTHOR.company.name}
-                </Link>
+                </ExternalLink>
               </li>
             )}
             <li className="text-sm">Based in {AUTHOR.location}</li>
@@ -58,9 +55,9 @@ export function Intro() {
                 className={itemClass}
               />
             ) : (
-              <Link key={social.name} href={social.url} target="_blank" className={itemClass}>
+              <ExternalLink key={social.name} href={social.url} className={itemClass}>
                 {social.name}
-              </Link>
+              </ExternalLink>
             );
           })}
         </div>

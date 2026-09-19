@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 
+import { ExternalLink } from "@/components/external-link";
 import { mdxCodeComponents } from "@/components/mdx-code-block";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
@@ -44,11 +45,7 @@ export function getMDXComponents(overrides?: MDXComponents): MDXComponents {
   return {
     a: ({ href = "", ...props }) => {
       const isInternal = href.startsWith("/") || href.startsWith("#");
-      return isInternal ? (
-        <Link href={href} {...props} />
-      ) : (
-        <a href={href} target="_blank" rel="noreferrer" {...props} />
-      );
+      return isInternal ? <Link href={href} {...props} /> : <ExternalLink href={href} {...props} />;
     },
     h2: anchoredHeading("h2"),
     h3: anchoredHeading("h3"),

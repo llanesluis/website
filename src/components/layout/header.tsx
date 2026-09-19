@@ -16,7 +16,7 @@ export function Header() {
     <header className="fixed inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] isolate z-50 container container-padding-x sm:sticky sm:top-4 sm:bottom-auto sm:mt-6">
       <div
         data-scrolled={scrolled}
-        className="-mx-4 flex h-10 items-center justify-between gap-8 rounded-full border border-dotted bg-background/75 px-4 shadow-xs backdrop-blur-lg transition-[border-color,box-shadow] duration-300 ease-out sm:data-[scrolled=false]:border-transparent sm:data-[scrolled=false]:shadow-none"
+        className="-mx-4 flex min-h-12 items-center justify-between gap-8 rounded-full border border-dotted bg-background/75 px-4 shadow-xs backdrop-blur-lg transition-[border-color,box-shadow] duration-300 ease-out sm:data-[scrolled=false]:border-transparent sm:data-[scrolled=false]:shadow-none"
       >
         <Link href="/" aria-label="Home" className="font-mono font-medium">
           l<span className="text-highlight">_</span>

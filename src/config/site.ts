@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   title: `${AUTHOR.name} | ${AUTHOR.role}`,
   name: "luisllanes.com",
   url: BASE_URL,
-  description: "Software Engineer and Web Developer who cares deeply about the little details.",
+  description: `${AUTHOR.blurb} Based in ${AUTHOR.location}.`,
   shortDescription: "Software Engineer and Web Developer who cares about the little details.",
   ogImage: `${BASE_URL}/opengraph-image.png`,
   keywords: [

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { IconExternalLink } from "@tabler/icons-react";
 
 import { PROJECTS } from "@/config/projects";
 
@@ -28,7 +28,7 @@ function ProjectItem({ project }: { project: (typeof PROJECTS)[number] }) {
         <div className="flex flex-col gap-2 md:w-1/3">
           <h3 className="text-balance">
             {project.name}{" "}
-            <IconArrowUpRight className="inline-block size-3.5 shrink-0 text-muted-foreground group-hover/item:visible md:invisible" />
+            <IconExternalLink className="inline-block size-3 shrink-0 text-muted-foreground group-hover/item:visible md:invisible" />
           </h3>
         </div>
 

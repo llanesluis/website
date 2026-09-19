@@ -9,6 +9,7 @@ import {
   ContributionGraphTotalCount,
   type Activity,
 } from "@/components/contribution-graph";
+import { ExternalLink } from "@/components/external-link";
 import { Spinner } from "@/components/ui/spinner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { formatPostDate } from "@/lib/dates";
@@ -65,14 +66,12 @@ export function GitHubContributions({
           {({ totalCount }) => (
             <div className="text-muted-foreground">
               {totalCount.toLocaleString("en")} contributions in the past 365 days on{" "}
-              <a
+              <ExternalLink
                 className="text-foreground link-underline"
                 href={`https://github.com/${username}`}
-                target="_blank"
-                rel="noopener"
               >
                 GitHub
-              </a>
+              </ExternalLink>
               .
             </div>
           )}
