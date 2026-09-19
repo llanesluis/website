@@ -46,9 +46,6 @@ export function generateMetadata(): Metadata {
       creator: creator.twitterUsername,
     },
     publisher: creator.name,
-    icons: {
-      icon: [{ url: "/favicon.ico", sizes: "any" }],
-    },
   };
 }
 
